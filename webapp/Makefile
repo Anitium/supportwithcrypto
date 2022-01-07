@@ -1,5 +1,3 @@
-BASE_DIR=deployment
-
 # Include libraries
 include deployment/resources/common.mk
 # Application variables
