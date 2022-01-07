@@ -5,10 +5,10 @@ const Copyright = () => {
     <div className="text-sm text-gray-100 font-semibold py-1">
       Copyright © {new Date().getFullYear()} Anitium React by{" "}
       <a
-        href="https://www.creative-tim.com?ref=nr-footer"
-        className="text-gray-400 hover:text-gray-100"
+        href="https://www.anitium.com"
+        className="text-gray-300 hover:text-gray-100"
       >
-        Anitium Tim
+        Anitium Team
       </a>
       .
     </div>

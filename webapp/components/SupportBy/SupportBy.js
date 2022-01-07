@@ -7,7 +7,7 @@ const SupportBy = () => {
   return (
     <>
       <SectionLayout>
-        s<div className="justify-center flex flex-wrap">
+        <div className="justify-center flex flex-wrap">
             <div className="w-full lg:w-12/12 px-4">
               <div className="justify-center text-center flex flex-wrap mt-24 mb-12">
                 <div className="w-full md:w-6/12 px-12 md:px-4">
