@@ -1,8 +1,8 @@
 
 import { DefaultLayout } from '../layout';
 import { HomeIntro } from '../components/HomeIntro';
-import { Guides } from '../components/Guides';
 import { SupportBy } from '../components/SupportBy';
+import { ClaimSection } from '../components/ClaimSection';
 
 const Home = () => {
   // functions
@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <>
       <HomeIntro />
-      <Guides />
+      <ClaimSection />
       <SupportBy />
     </>
   )
