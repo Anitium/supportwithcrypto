@@ -1,8 +1,6 @@
 import React from 'react';
 import SectionLayout from '../../layout/SectionLayout';
-import { GuideCard } from '../cards/GuideCard'
 import { ClaimYourName } from '../ClaimYourName';
-import { items } from './items'
 
 const ClaimSection = () => {
   return (
