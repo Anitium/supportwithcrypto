@@ -7,10 +7,9 @@ const GuideCard = ({icon, title, description, link, variations}) => {
     <>
       <div className="p-4">
         <Link href={link}>
-          <div className="mb-2">
-            <img className="mx-auto w-10 h-10 " src={icon} alt="Sunset in the mountains" />
-          </div>
-          
+          <div className="flex justify-center">
+            <img className="w-16 h-16 object-cover rounded-full border-4 border-white" src={icon} />
+          </div>          
         </Link>
         <div className="text-center font-bold text-l mb-3 text-gray-800">
             {title}
