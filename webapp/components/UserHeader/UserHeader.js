@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { items } from './items';
 
 const UserHeader = ({user}) => {
+  // BEFORE
+  //const userDetails = findUserById(user)
+  
+  // MAKE IT WORK
   const userDetails = {
     id: 'karelbecerra',
     name: 'KarelBecerra',
