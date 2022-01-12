@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Copyright from './Copyright';
 import Resources from './Resources';
 import Social from './Social';

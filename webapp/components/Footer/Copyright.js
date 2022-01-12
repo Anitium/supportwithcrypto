@@ -3,12 +3,12 @@ const Copyright = () => {
     <>
 
     <div className="text-sm text-gray-100 font-semibold py-1">
-      Copyright © {new Date().getFullYear()} Anitium React by{" "}
+      Copyright © {new Date().getFullYear()} by{" "}
       <a
-        href="https://www.anitium.com"
+        href="https://www.supportwithcrypto.com"
         className="text-gray-300 hover:text-gray-100"
       >
-        Anitium Team
+        SupportWithCrypto Team
       </a>
       .
     </div>

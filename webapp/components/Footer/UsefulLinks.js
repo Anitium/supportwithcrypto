@@ -1,38 +1,34 @@
+const links = [
+  {
+    title: 'About Us',
+    link: 'https://www.supportwithcrypto.com/'
+  },
+  {
+    title: 'Github',
+    link: 'https://www.github.com/supportwithcrypto'
+  },
+  {
+    title: 'Free Products',
+    link: 'https://www.supportwithcrypto.com'
+  }  
+];
+
 const UsefulLinks = () => {
   return (
     <>
-
       <span className="block uppercase text-gray-300 text-sm font-semibold mb-2">
         Useful Links
       </span>
       <ul className="list-unstyled">
-        <li>
+        { links.map(x => (<li>
           <a
             className="text-gray-100 hover:text-gray-50 font-semibold block pb-2 text-sm"
-            href="https://www.anitium.com/"
+            href={x.link}
           >
-            About Us
+            {x.title}
           </a>
-        </li>
-        <li>
-          <a
-            className="text-gray-100 hover:text-gray-50 font-semibold block pb-2 text-sm"
-            href="https://www.github.com/Anitium"
-          >
-            Github
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-gray-100 hover:text-gray-50 font-semibold block pb-2 text-sm"
-            href="https://www.anitium.com"
-          >
-            Free Products
-          </a>
-        </li>
+        </li>)) }
       </ul>
-
-
     </>
   );
 }

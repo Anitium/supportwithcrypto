@@ -1,6 +1,7 @@
 import React from 'react';
+
 import SectionLayout from '../../layout/SectionLayout';
-import { GuideCard } from '../cards/GuideCard'
+import { GuideCard } from '../GuideCard'
 import { items } from './items'
 
 const SupportBy = () => {

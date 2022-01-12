@@ -1,3 +1,14 @@
+const links = [
+  {
+    title: 'Terms & Conditions',
+    link: 'https://www.supportwithcrypto.com/'
+  },
+  {
+    title: 'Terms & Conditions',
+    link: 'https://www.supportwithcrypto.com/'
+  },  
+];
+
 const Resources = () => {
   return (
     <>
@@ -6,38 +17,15 @@ const Resources = () => {
         Other Resources
       </span>
       <ul className="list-unstyled">
-        <li>
+        { links.map(x => (<li>
           <a
             className="text-gray-100 hover:text-gray-50 font-semibold block pb-2 text-sm"
-            href="https://github.com/anitium/"
+            href={x.link}
           >
-            MIT License
+            {x.title}
           </a>
         </li>
-        <li>
-          <a
-            className="text-gray-100 hover:text-gray-50 font-semibold block pb-2 text-sm"
-            href="https://anitium.com/"
-          >
-            Terms & Conditions
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-gray-100 hover:text-gray-50 font-semibold block pb-2 text-sm"
-            href="https://anitium.com/"
-          >
-            Privacy Policy
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-gray-100 hover:text-gray-50 font-semibold block pb-2 text-sm"
-            href="https://anitium.com/"
-          >
-            Contact Us
-          </a>
-        </li>
+        )) }
       </ul>
 
 

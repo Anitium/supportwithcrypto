@@ -6,16 +6,14 @@ import { Footer } from '../components/Footer';
 
 const DefaultLayout = ({children}) => (
     <div className="bg-white">
-      <Navbar/>
-      <div className="">
-        {children}
-      </div>
-      <Footer/>
+    	<Navbar/>
+    	{children}
+		<Footer/>
     </div>
-)
+);
 
 DefaultLayout.propTypes = {
-  children: PropTypes.node
+	children: PropTypes.node
 };
 
 export default DefaultLayout;

@@ -1,16 +1,10 @@
-
 import { DefaultLayout } from '../layout';
 import { HomeIntro } from '../components/HomeIntro';
 import { SupportBy } from '../components/SupportBy';
 import { ClaimSection } from '../components/ClaimSection';
 
-const Home = () => {
+const Index = () => {
   // functions
-  const handleFetchPost = async () => {
-    const response = await fetch('/api/posts');
-    const data = await response.json();
-    console.log('data:', data);
-  };
 
   // render out
   return (
@@ -22,6 +16,6 @@ const Home = () => {
   )
 }
 
-Home.Layout = DefaultLayout;
+Index.Layout = DefaultLayout;
 
-export default Home;
+export default Index;
