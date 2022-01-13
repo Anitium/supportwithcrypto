@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
+import { ConnectButton } from '../ConnectButton'; 
 import HeaderLogo from './HeaderLogo';
 import classNames from '../../utils/classutils';
 
@@ -56,7 +57,7 @@ const Navbar = () => {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 
                 {/* Wallet Connect Logic. Login and logout */}
-                <span>Connect Wallet</span>
+                <ConnectButton />
 
               </div>
             </div>

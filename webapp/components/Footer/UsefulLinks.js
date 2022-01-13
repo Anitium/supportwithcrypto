@@ -20,7 +20,7 @@ const UsefulLinks = () => {
         Useful Links
       </span>
       <ul className="list-unstyled">
-        { links.map(x => (<li>
+        { links.map((x,i) => (<li key={i}>
           <a
             className="text-gray-100 hover:text-gray-50 font-semibold block pb-2 text-sm"
             href={x.link}
