@@ -3,7 +3,7 @@ const MicroPage = ({}) => {
   return (
     <>
       <div className="flex flex-col bg-gray-100 h-screen">
-        <div className=" bg-white">
+        <div className=" bg-white top-0 sticky z-50">
           <div className="h-16 flex space items-center justify-between max-w-5xl container mx-auto">
             <div className="flex">
               <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
