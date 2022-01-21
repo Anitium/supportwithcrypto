@@ -4,6 +4,9 @@ module.exports = {
     "./components/**/*.{js,jsx}",
   ],
   theme: {
+    container: {
+      padding: '12px',
+    },
     extend: {},
   },
   plugins: [],
