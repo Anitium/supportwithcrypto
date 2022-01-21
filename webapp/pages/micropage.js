@@ -87,7 +87,19 @@ const MicroPage = ({}) => {
                   <div class="flex flex-col space-y-6">
                     <div className="col-span-6 sm:col-span-3">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                        Your donation
+                        Your donation (in dollars)
+                      </label>
+                      <input
+                        type="text"
+                        name="first-name"
+                        id="first-name"
+                        autoComplete="given-name"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block border h-8 w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                        Your donation (in crypto)
                       </label>
                       <input
                         type="text"
