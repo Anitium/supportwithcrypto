@@ -1,15 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
+import { ethers } from 'ethers';
+import { useEthers, useEtherBalance, useSendTransaction } from "@usedapp/core";
 
 import { DefaultLayout } from "../layout";
 import { getCreator, updateCreator } from '../api/creatorsapi';
-import { formatAccount } from '../utils/etherutils';
+import { formatAccount, formatCurrency } from '../utils/etherutils';
 import classNames from '../utils/classutils';
 
 const User = ({}) => {
+  // var
+  const lastFormData = useRef({});
+
   // state
-  const [creator, setCreator] = useState({});
+  const [creator, setCreator] = useState({
+  	transactions:[],
+  });
   const [error, setError] = useState('');
   const [refresh, setRefresh] = useState(true);
 
@@ -32,7 +39,6 @@ const User = ({}) => {
       }
   	};
     const { creatorid } = router.query;
-    console.log('--- creatorid:', creatorid);
     if(creatorid) {
       fetchData(creatorid);
     }
@@ -41,27 +47,75 @@ const User = ({}) => {
   // form management
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
 
+  // ethers management
+  const { account, chainId } = useEthers();
+  const etherBalance = useEtherBalance(account);
+
+  // transaction management
+  const { sendTransaction, state:transactionState } = useSendTransaction();
+
+  // input validation
+  const enableBtn = useMemo(() => {
+  	return account ? true : false;
+  }, [account]);
+
+  useEffect(() => {
+	  const handleRecordTransaction = async (id, transaction) => {
+	  	// init
+	  	const formData = lastFormData.current;
+	  	const ts = new Date().getTime();
+	  	const { creatorid } = router.query;
+	  	const data = {...creator};
+
+	  	// register transaction
+	  	data.transactions.push({
+	  		'transactionid': id,
+	        'amount': transaction.value,
+	        'message': formData.message,
+	        'created': ts,
+	        'from': account,
+	        'to': creatorid,
+	        'chain': chainId,
+	  	});
+	  	const response = await updateCreator(data);
+	  	
+	  	// handle response
+	  	console.log(response);
+	  	if(!response.success) {
+	  		setError(response.errorMessage);
+	  	}
+
+	  	// update state
+	  	reset();
+	  	setRefresh(!refresh);
+	  };
+
+  	console.log('--- transactionState:', transactionState);
+  	if(transactionState.status == 'Success') {
+  		handleRecordTransaction(transactionState.receipt.blockHash, transactionState.transaction);
+  	}
+  }, [transactionState]);
+
+  // logs
+  console.log('--- account, chainId, balance, enableBtn, transactionState', account, chainId, etherBalance, enableBtn, transactionState, creator);
+
+
   // functions
   const handleDonation = async (formData) => {
   	console.log('form formData:', formData);
-  	const ts = new Date().getTime();
-  	const { creatorid } = router.query;
-  	const data = {...creator};
-  	data.transactions.push({
-        'amount': formData.amount,
-        'message': formData.message,
-        'created': ts,
-        'from': creatorid,
-        'to': '',
-        'chain': '',
-  	});
-  	const response = await updateCreator(data);
-  	console.log(response);
-  	if(!response.success) {
-  		setError(response.errorMessage);
+  	console.log('form enableBtn:', enableBtn);
+  	// validation
+  	if(!enableBtn) {
+  		alert('Must connect to the wallet first');
+  		return
   	}
-  	reset();
-  	setRefresh(!refresh);
+  	// init
+  	const { creatorid } = router.query;
+  	const value = ethers.utils.parseUnits(formData.amount, 'ether');
+
+  	// send transaction
+  	lastFormData.current = formData;
+  	sendTransaction({ 'from': account, 'to': creatorid, value });
   };
 
   return (
@@ -95,9 +149,9 @@ const User = ({}) => {
               <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Suporters</h2>
               <div className="flex flex-col space-y-6">
               	{creator && creator.transactions && creator.transactions.map(x =>(
-	                <div className="flex h-14 items-center space-x-3 p-4 rounded-md bg-gradient-to-r from-cyan-500 to-blue-100 ">
+	                <div key={x.transactionid} className="flex h-14 items-center space-x-3 p-4 rounded-md bg-gradient-to-r from-cyan-500 to-blue-100 ">
 	                  <a className="rounded-full h-8 w-8 border-2 border-blue-600 bg-blue-400"></a>
-	                  <p>{x.message} - {x.amount}</p>
+	                  <p>{x.message} - {formatCurrency(x.amount)}</p>
 	                </div>              		
               	))}
               </div>
@@ -120,7 +174,7 @@ const User = ({}) => {
 	                  name="amount"
 	                  id="amount"
 	                  className={classNames('block w-full bg-transparent outline-none border-b-2 py-2 placeholder-blue-500 focus:px-4 focus:bg-blue-600/40 focus:rounded-md', errors && errors.amount ? "text-red-300 border-red-400": "text-blue-700 border-blue-400")}
-	                  {...register("amount", { required: true, valueAsNumber: true })}
+	                  {...register("amount", { required: true })}
 	                />
 	              </div>
 	              <div>

@@ -17,9 +17,6 @@ const ConnectButton = ({label}) => {
   const handleConnect = () => {
     activateBrowserWallet();
   };
-
-  // logs
-  console.log('account, chainId, balance', account, chainId, etherBalance);
   
   // render out
   return (
