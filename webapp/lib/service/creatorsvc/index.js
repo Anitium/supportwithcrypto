@@ -3,13 +3,13 @@ import { ObjectId } from 'mongodb';
 import { getDbConnection } from '../../data/mongodb';
 import { getLogger } from '../../../utils/logger';
 
-export async function findCreatorByAddressOrEns(value) {
+export async function findCreatorById(creatorid) {
     try {
       // connect to the database
       let { db } = await getDbConnection();
 
       // fetch the creator by address
-      let data = await db.collection('creator').findOne({ $or:[ {'address': value}, {'ens': value}] });
+      let data = await db.collection('creator').findOne({'creatorid': creatorid});
       if(!data) {
         data = {};
       }
@@ -37,15 +37,14 @@ export async function updateCreator(data) {
     let { db } = await getDbConnection();
 
     // update the published status of the creator
-    await db.collection('creator').update({ '_id': new ObjectId(data['_id']) }, {
+    await db.collection('creator').update({ 'creatorid': data.creatorid }, {
       $set: {
         'created':      data.address,
         'updated':      data.updated,
         'name':         data.name,
         'avatar':       data.avatar,
         'about':        data.about,
-        'address':      data.address,
-        'ens':          data.ens,
+        'creatorid':    data.creatorid,
         'transactions': data.transactions,
       }
     }, { upsert:true });
