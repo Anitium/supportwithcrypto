@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Navbar } from '../components/Navbar';
+import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
 const DefaultLayout = ({children}) => (
-    <div className="bg-white">
-    	<Navbar/>
+    <div className="flex flex-col bg-gray-50 antialiased font-mono">
+    	<Header />
     	{children}
-		<Footer/>
+		<Footer />
     </div>
 );
 

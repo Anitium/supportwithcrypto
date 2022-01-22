@@ -1,43 +1,19 @@
 import React from 'react';
 
-import Copyright from './Copyright';
-import Resources from './Resources';
-import Social from './Social';
-import UsefulLinks from './UsefulLinks';
-
 const Footer = () => {
   return (
-    <>
-      <footer className="relative bg-fuchsia-900 pt-8 pb-6">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap text-center lg:text-left">
-            <div className="w-full lg:w-6/12 px-4">
-              <h4 className="text-3xl font-semibold text-gray-100">Let&apos;s keep in touch!</h4>
-              <h5 className="text-lg mt-0 mb-2 text-gray-200">
-                Find us on any of these platforms.
-              </h5>
-              <Social/>
-            </div>
-            <div className="w-full lg:w-6/12 px-4">
-              <div className="flex flex-wrap items-top mb-6">
-                <div className="w-full lg:w-4/12 px-4 ml-auto">
-                  <UsefulLinks/>
-                </div>
-                <div className="w-full lg:w-4/12 px-4">
-                  <Resources/>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr className="my-6 border-fuchsia-600" />
-          <div className="flex flex-wrap items-center md:justify-between justify-center">
-            <div className="w-full md:w-4/12 px-4 mx-auto text-center">
-              <Copyright/>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </>
+  <footer className="p-4 flex justify-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-indigo-500">
+    <div className="container mx-auto flex space items-center justify-between h-16 px-4 xl:px-24">
+      <div className="flex space-x-4">
+        <label className="font-medium">Follow us in </label>
+        <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
+        <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
+      </div>
+      <div className="flex">
+        <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
+      </div>
+    </div>
+  </footer>
   );
 }
 
