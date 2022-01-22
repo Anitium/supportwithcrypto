@@ -1,14 +1,29 @@
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 
 import { DefaultLayout } from "../layout";
+import { getCreator } from '../api/creatorsapi';
+import { formatAccount } from '../utils/etherutils';
 
 const User = ({}) => {
+  // state
+  const [creator, setCreator] = useState({});
+
   // hooks
   const router = useRouter();
-  
-  // logs
-  const { userid } = router.query;
-  console.log('userid:', userid);
+
+  // effect for onloading the page
+  useEffect(() => {
+    const fetchData = async (userid) => {
+      const data = await getCreator(userid);
+      setCreator(data);
+  	};
+    const { userid } = router.query;
+    console.log('--- userid:', userid);
+    if(userid) {
+      fetchData(userid);
+    }
+  }, [router.query]);
 
   return (
   <content className="container mx-auto flex flex-col">
@@ -16,7 +31,7 @@ const User = ({}) => {
     <div className="flex flex-col justify-center items-center">
       {/* User Profile Header Image*/}
       <div className="w-full">
-        <img className="w-full max-h-40 md:max-h-60 xl:max-h-72 object-cover overflow-hidden" src="/assets/img/users/default/header.jpg"></img>
+        <img className="w-full max-h-40 md:max-h-60 xl:max-h-72 object-cover overflow-hidden" src={(creator && creator.avatar) ? creator.avatar : "/assets/img/users/default/header.jpg"}></img>
       </div>
       {/* User Profile Info*/}
       <div className="flex justify-between max-w-5xl w-full">
@@ -25,8 +40,8 @@ const User = ({}) => {
             <img className="w-14 h-14 lg:w-32 lg:h-32 object-cover rounded-full border-2 lg:border-4 border-indigo-50" src="/assets/img/users/default/avatar.png" />
           </div>
           <div className="flex flex-col">
-            <div className="font-bold text-lg lg:text-2xl text-gray-600">XXXX-Name</div>
-            <div className=" bg-gray-200 rounded-md p-1 text-xs lg:text-sm text-center text-gray-700">XXXX-Address</div>
+            { creator && creator.name && <div className="font-bold text-lg lg:text-2xl text-gray-600">{creator.name}</div> }
+            <div className=" bg-gray-200 rounded-md p-1 text-xs lg:text-sm text-center text-gray-700">{router.query.hasOwnProperty('userid') && formatAccount(router.query.userid)}</div>
           </div>
         </div>
       </div>
@@ -66,7 +81,7 @@ const User = ({}) => {
         {/* User Content Donate Botton (Right Panel & Top) */}
         <div className="basis-5/12 flex flex-col lg:pt-5 space-y-5 ">
           <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
-            <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Support <strong>XXXX-Name</strong></h2>
+            <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Support <strong>{(creator && creator.name)? creator.name : 'the Creator'}</strong></h2>
             <div className="flex flex-col space-y-6">
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
@@ -102,14 +117,16 @@ const User = ({}) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
+          
+          { creator && creator.about && <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
             <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">About</h2>
             <div className="flex flex-col space-y-6">
               <div className="">
-                <p>XXXX-About</p>
+                <p>{creator.about}</p>
               </div>
             </div>
-          </div>
+          </div> }
+
         </div>
       </div>
     </section>
