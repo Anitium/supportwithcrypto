@@ -9,7 +9,7 @@ export const getCreator = async (id) => {
 		return {
 			payload: {},
 			success: false,
-			errorMessage: new Error(error).message,
+			errorMessage: new Error(err).message,
 		};
 	}
 };
@@ -29,7 +29,7 @@ export const updateCreator = async (data) => {
 		return {
 			payload: {},
 			success: false,
-			errorMessage: new Error(error).message,
+			errorMessage: new Error(err).message,
 		};
 	}
 };

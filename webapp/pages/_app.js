@@ -1,7 +1,9 @@
 import React from "react";
 
 import { DAppProvider } from "@usedapp/core";
+
 import '../styles/globals.css';
+import '../styles/components.css';
 
 const EmptyLayout = ({ children }) => <React.Fragment>{children}</React.Fragment>;
 
