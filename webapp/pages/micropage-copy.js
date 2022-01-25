@@ -4,7 +4,7 @@ const MicroPage = ({}) => {
   const value = "0xfasdfadfd2343a5d5fe";
   return (
     <>
-      <div className="flex flex-col bg-gray-50 antialiased font-mono">
+      <div className="flex flex-col bg-gray-50 antialiased font-mono" >
         {/* Top Menu Bar */}
         <header className="bg-white top-0 sticky z-50">
           <div className="container mx-auto flex items-center justify-between h-16 px-4 xl:px-24">
@@ -61,15 +61,21 @@ const MicroPage = ({}) => {
                   <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
                     <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Suporters</h2>
                     <div className="flex flex-col space-y-6">
-                      <div className="flex h-14 items-center space-x-3 p-4 rounded-md bg-gradient-to-r from-cyan-500 to-blue-100 ">
+                      <div 
+                      style={ {background: 'linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)'}} 
+                      className="flex h-14 items-center space-x-3 p-4 rounded-md bg-gradient-to-r from-cyan-500 to-blue-100 ">
                         <a className="rounded-full h-8 w-8 border-2 border-blue-600 bg-blue-400"></a>
                         <p>Good luck!</p>
                       </div>
                       <div className="flex h-14 items-center space-x-3 p-4 rounded-md bg-gradient-to-r from-cyan-500 to-blue-100 ">
-                        <a className="rounded-full h-8 w-8 border-2 border-blue-600 bg-blue-400"></a>
+                        <a 
+                        style={ {background: 'linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)'}} 
+                        className="rounded-full h-8 w-8 border-2 border-blue-600 bg-blue-400"></a>
                         <p>You did it!</p>
                       </div>
-                      <div className="flex h-14 items-center space-x-3 p-4 rounded-md bg-gradient-to-r from-cyan-500 to-blue-100 ">
+                      <div 
+                      style={ {background: 'linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)'}} 
+                      className="flex h-14 items-center space-x-3 p-4 rounded-md bg-gradient-to-r from-cyan-500 to-blue-100 ">
                         <a className="rounded-full h-8 w-8 border-2 border-blue-600 bg-blue-400"></a>
                         <p>Best project I ever seen!</p>
                       </div>
@@ -130,6 +136,7 @@ const MicroPage = ({}) => {
                     </div>
                     <div className="flex items-center pr-12">
                       <a href="#"
+                      style={ {background: 'linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)'}} 
                         className="w-36 lg:w-64 flex items-center justify-center border border-transparent font-semibold text-xl md:py-4 rounded-3xl text-indigo-100 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-indigo-500"
                       >Donate</a>
                     </div>
@@ -148,7 +155,9 @@ const MicroPage = ({}) => {
           </section>
         </content>
         {/* Footer */}
-        <footer className="p-4 flex justify-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-indigo-500">
+        <footer className="p-4 flex justify-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-indigo-500"
+        style={ {background: 'linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)'}} 
+        >
           <div className="container mx-auto flex space items-center justify-between h-16 px-4 xl:px-24">
             <div className="flex space-x-4">
               <label className="font-medium">Follow us in </label>
