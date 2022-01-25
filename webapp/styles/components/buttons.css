@@ -1,3 +1,4 @@
 .primary-btn {
-    @apply  w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-blue-800 md:py-4 md:text-lg md:px-10
+    @apply  w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md;
+    @apply  text-white bg-gradient-to-r from-swc-left to-swc-right hover:bg-blue-800 md:py-4 md:text-lg md:px-10;
 }

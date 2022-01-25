@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="pt-8 flex flex-col items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-indigo-500">
+    <footer className="pt-8 flex flex-col items-center justify-center bg-gradient-to-r from-swc-left to-swc-right hover:bg-indigo-500">
       <div className='text-xs text-gray-100'>
         <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
       </div>
@@ -13,7 +13,7 @@ const Footer = () => {
           <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
         </div>
         <div className="flex">
-          <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
+          <a><div className="rounded-full h-8 w-8 bg-swc-left"></div></a>
         </div>
       </div>
       <div className='text-xs text-gray-100'>
