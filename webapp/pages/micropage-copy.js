@@ -94,7 +94,7 @@ const MicroPage = ({}) => {
               <div className="basis-5/12 flex flex-col lg:pt-5 space-y-5 ">
                 <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
                   <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Support <strong>Kina Jonne</strong></h2>
-                  <div class="flex flex-col space-y-6">
+                  <div className="flex flex-col space-y-6">
                     <div className="col-span-6 sm:col-span-3">
                       <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                         Your donation (in dollars)
