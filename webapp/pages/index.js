@@ -9,7 +9,6 @@ const Index = () => {
         <HomeIntro />
       </section>
     </content>
-      
     </>
   )
 }

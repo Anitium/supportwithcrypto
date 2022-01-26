@@ -6,6 +6,7 @@ import { formatEther } from "@ethersproject/units";
 import { ethers } from 'ethers';
 import Web3Modal from "web3modal";
 import WalletConnectProvider from '@walletconnect/web3-provider';
+import { Logo } from '../Logo';
 
 const formatCurrency = (value) => value ? parseFloat(formatEther(value)).toFixed(4) : '0.000';
 
@@ -61,10 +62,9 @@ const ConnectButton = ({label}) => {
       <button
         type="button" 
         onClick={handleConnect}
-        className="flex items-center justify-center px-3 py-2 border border-gray-300 shadow-lg rounded-md bg-gray-100 bg-opacity-10 hover:border-gray-400 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-1 text-cyan-500 ">
-          <path d="M5.75 10L12 4.75L18.25 10M5.75 10L12 19.25L18.25 10M5.75 10L12 12.25L18.25 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-        </svg>
+        className="flex items-center justify-center px-3 py-2 border border-gray-300 shadow-lg rounded-md bg-gray-100 bg-opacity-10 hover:border-gray-400 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+      >
+        <Logo size="w-4 h-4" />
         <span className="text-sm leading-4 font-medium">{label}</span>
       </button>
     )}

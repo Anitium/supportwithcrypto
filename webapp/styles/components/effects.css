@@ -1,0 +1,3 @@
+.gradient {
+    @apply  bg-gradient-to-r from-swc-left to-swc-right;
+}
