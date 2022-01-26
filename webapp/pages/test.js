@@ -1,26 +1,39 @@
-import React, {useState, useEffect, useMemo} from 'react'
+import React, { useState } from 'react'
 
 const Calculator = ({}) => {
 
   const [dollar, setDollar] = useState('100');
-  const [crypto, setCrypto] = useState('');
+  const [crypto, setCrypto] = useState('1');
 
-  const dol = useEffect(() => {
-    setCrypto(dollar/100);
-  }, [dollar]);
+  const handleDollarChange = (e) => {
+    setDollar(e.target.value);
+    setCrypto( parseInt(e.target.value)/100 );
+  };
 
+  const handleCryptoChange = (e) => {
+    if(e.target.value.length>0) {
+      setDollar(parseInt(e.target.value)*100);
+      setCrypto(e.target.value);
+    } else {
+
+    }
+  };
+
+  console.log('--- render');
   return (
-      <fieldset>
+      <fieldset className="p-4">
         <legend>Enter dollars:</legend>
         <input className='border-2 border-gray-800'
           value={dollar}
-          onChange={event => setDollar(event.target.value)} 
+          onChange={handleDollarChange} 
         />
         <br/>
         <p>ETHER</p>
         <br/>
-        <input className='border-2 border-gray-800'
-          value={crypto} onChange={event => setCrypto(event.target.value)}
+        <input 
+          className='border-2 border-gray-800'
+          value={crypto} 
+          onChange={handleCryptoChange} 
         />
       </fieldset>
     );
