@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import { useEthers, useEtherBalance } from "@usedapp/core";
 import { formatEther } from "@ethersproject/units";
+import { ethers } from 'ethers';
+import Web3Modal from "web3modal";
+import WalletConnectProvider from '@walletconnect/web3-provider';
 
 const formatCurrency = (value) => value ? parseFloat(formatEther(value)).toFixed(4) : '0.000';
 
@@ -10,12 +13,35 @@ const formatAccount = (account) => account && `${account.slice(0, 5)}...${accoun
 
 const ConnectButton = ({label}) => {
   // hooks
-  const { activateBrowserWallet, account, chainId } = useEthers();
+  const { account } = useEthers();
   const etherBalance = useEtherBalance(account);
 
   // functions
-  const handleConnect = () => {
-    activateBrowserWallet();
+  const handleConnect = async () => {
+    try {
+      const providerOptions = {
+        walletconnect: {
+          package: WalletConnectProvider,
+          options: {
+            // test key - don't copy as your mileage may vary
+            infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+          }
+        },
+      }; 
+      // web3Modal support multiple providers/wallets
+      const web3Modal = new Web3Modal({
+        cacheProvider: false, // optional
+        providerOptions, // required        
+      });
+      const connection = await web3Modal.connect();
+      // Get providers
+      const provider = new ethers.providers.Web3Provider(connection);
+      console.log('provider:', provider);
+      // reload the window
+      window.location.reload();
+    } catch(err) {
+      console.log('connection error:', err);
+    }    
   };
   
   // render out
