@@ -7,6 +7,7 @@ import { useEthers, useEtherBalance, useSendTransaction } from "@usedapp/core";
 import { DefaultLayout } from "../layout";
 import { getCreator, updateCreator } from '../api/creatorsapi';
 import classNames from '../utils/classutils';
+import { findChainById } from '../utils/cryptoutils'
 import CreatorProfile from '../components/creator/CreatorProfile';
 import CreatorComments from '../components/creator/CreatorSupporters';
 import CreatorAbout from '../components/creator/CreatorAbout';
@@ -101,58 +102,38 @@ const User = ({}) => {
   // logs
   console.log('--- account, chainId, balance, enableBtn, transactionState', account, chainId, etherBalance, enableBtn, transactionState, creator);
 
-  const [dollars, setDollars] = useState(5);
+  const [dollar, setDollar] = useState(5);
   const [crypto, setCrypto] = useState(0);
-  const [currency, setCurrency] = useState('ETH');
-  const [symbol, setSymbol] = useState('ETH');
-  
-  const exchange = [
-    {id: 'ETH', symbol: 'ETH', value : 2500},
-    {id: 'MATIC', symbol: 'MAT', value : 2}
-  ]
 
-  function findRateByCrypto(id) {
-    return exchange.find((element) => {
-      return element.id === id;
-    })
+  const symbol = useMemo(()=> { 
+    if(chainId != undefined) updateDollar(dollar);
+    return (chainId != undefined) ? findChainById(chainId).symbol : 'EHT'; 
+  }, [chainId]) 
+
+  const handleDollarChange = (event) => {
+    updateDollar(event.target.value)
+  };
+
+  function updateDollar(value){
+    setDollar(value);
+    setCrypto( parseInt(value)/findChainById(chainId).value );
   }
-  
-  function handleChangeEmpty(e) {
-  }
+
+  const handleCryptoChange = (e) => {
+    if(e.target.value.length>0) {
+      setDollar(parseInt(e.target.value)*100);
+      setCrypto(e.target.value);
+    } else {
+
+    }
+  }; 
 
   const addDonation = (event) => {
-    setDollars(dollars + 5);
+    setDollars(dollar + 5);
   }
 
   const lessDonation = (event) => {
-    setDollars((dollars - 5) <=0 ? 0 : dollars - 5);
-  }
-
-  const updateDollars = (event) => {
-    setDollars(event.target.value);
-  }
-
-  const updateCurrency = (event) => {
-    setCurrency(event.target.value);
-  }
-
-  useMemo(() => {
-    return dollars / findRateByCrypto(currency).values
-  }, [crypto]);
-
-  useEffect(() => {
-    updateFields()
-  }, [dollars]);
-
-  useEffect(() => {
-    updateFields()
-  }, [currency]);
-  
-  const updateFields = () => {
-    var rate = findRateByCrypto(currency)
-    console.log('USD=' + dollars)
-    setCrypto(dollars / rate.value)
-    setSymbol(rate.symbol);
+    setDollars((dollar - 5) <=0 ? 0 : dollar - 5);
   }
 
   // functions
@@ -211,7 +192,7 @@ const User = ({}) => {
                         $
 				      			  </span>
 				      			</div>
-				      			<input type="text" name="dollars" id="dollars" value={dollars} onChange={updateDollars}
+				      			<input type="text" name="dollars" id="dollars" value={dollar} onChange={handleDollarChange}
 				      			  className={classNames('border border-swc-left h-12 focus:ring-swc-right block w-full pl-8 pr-12 sm:text-sm rounded-3xl text-gray-500 lg:text-2xl font-bold')}
 				      			/>
 				      		</div>
@@ -219,30 +200,17 @@ const User = ({}) => {
                     <button onClick={addDonation}><div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">+</div></button>
 				      	  </div>
 			          </div>
-				        <div className="flex flex-row w-full">
-				      	  <div className="flex relative w-full rounded-md shadow-sm ">
-				      			<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-				      			  <span className={classNames('text-gray-500 lg:text-2xl font-bold ', errors && errors.amount ? 'text-red-400' : 'text-blue-400')}>
-                        {symbol}
-				      			  </span>
-				      			</div>
-				      			<input type="text" name="amount" id="amount" value={crypto} onChange={handleChangeEmpty}
-				      			  className={classNames('border border-swc-left h-12 focus:ring-swc-right block w-full pl-16 pr-12 sm:text-sm rounded-lg text-gray-500 lg:text-2xl font-bold', errors && errors.amount ? "text-red-300 border-red-400": "text-blue-700 border-blue-400")}
-				      			  {...register("amount", { required: true })}
-				      			/>
-                    <div className="absolute inset-y-0 right-0 flex rounded-r-lg items-center gradient">
-                      <label htmlFor="currency" className="sr-only">
-                        Currency
-                      </label>
-                      <select id="currency" name="currency" defaultValue={currency} onChange={updateCurrency}
-                        className="text-3xl font-bold focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent text-gray-100 sm:text-sm "
-                      >
-                        <option>ETH</option>
-                        <option>MATIC</option>
-                      </select>
-                    </div>
-				      		</div>
-			          </div>
+                <div className="flex flex-row w-full">
+                  <div className="flex relative w-full rounded-md shadow-sm">
+                    <span className="gradient inline-flex h-full w-32 items-center justify-center rounded-l-md text-2xl font-bold text-gray-100">
+                      {symbol}
+                    </span>
+                    <input type="text" name="amount" id="amount" value={crypto} onChange={handleCryptoChange}
+                      className={classNames('border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 sm:text-sm rounded-r-lg text-gray-500 lg:text-2xl font-bold', errors && errors.amount ? "text-red-300 border-red-400": "text-blue-700 border-blue-400")}
+                      {...register("amount", { required: true })}
+                    />
+                  </div>
+                </div>
 	              <div>
 	                <div className="mx-auto block relative mt-0 font-normal">
 				      	    <label className="top-0 left-0 absolute pt-2 px-3 text-left text-xs text-gray-600 font-normal">Your message to creator...</label>

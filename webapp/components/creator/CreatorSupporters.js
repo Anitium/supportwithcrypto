@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {formatCurrency} from '../../utils/etherutils/';
+import {formatCurrency} from '../../utils/cryptoutils';
 
 const CreatorSupporters = ({creator}) => {
 
