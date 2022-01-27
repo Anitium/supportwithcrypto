@@ -190,13 +190,13 @@ const User = ({}) => {
 				      	  </div>
 				      	  <div className="flex relative rounded-md shadow-sm text-gray-500">
 				      			<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-				      			  <span className={classNames('text-gray-500 lg:text-2xl font-bold ', errors && errors.amount ? 'text-red-400' : 'text-blue-400')}>
+				      			  <span className={classNames('text-gray-400 lg:text-4xl font-bold ', errors && errors.amount ? 'text-red-400' : 'text-gray-400')}>
                         $
 				      			  </span>
 				      			</div>
 				      			<input type="text" name="dollars" id="dollars" value={dollar} onChange={handleDollarChange}
                       placeholder='5'
-				      			  className={classNames('border border-swc-left h-12 focus:ring-swc-right block w-full pl-8 pr-12 sm:text-sm rounded-3xl text-gray-500 lg:text-2xl font-bold')}
+				      			  className={classNames('border border-swc-left h-20 focus:ring-swc-right block w-48 pl-10 pr-12 sm:text-sm rounded-3xl text-gray-500 lg:text-5xl font-bold')}
 				      			/>
 				      		</div>
                   <div className='flex'>
@@ -210,8 +210,7 @@ const User = ({}) => {
                     </span>
                     <input type="text" name="amount" id="amount" value={crypto} onChange={handleCryptoChange}
                       placeholder='0'
-                      className={classNames('border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 sm:text-sm rounded-r-lg text-gray-500 lg:text-2xl font-bold', errors && errors.amount ? "text-red-300 border-red-400": "text-blue-700 border-blue-400")}
-                      
+                      className={classNames('border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 sm:text-sm rounded-r-lg text-gray-500 lg:text-2xl font-bold', errors && errors.amount ? "text-red-300 border-red-400": "text-gray-500 border-swc-left")}
                     />
                   </div>
                 </div>
