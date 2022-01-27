@@ -9,7 +9,7 @@ import { getCreator, updateCreator } from '../api/creatorsapi';
 import classNames from '../utils/classutils';
 import { findChainById } from '../utils/cryptoutils'
 import CreatorProfile from '../components/creator/CreatorProfile';
-import CreatorComments from '../components/creator/CreatorSupporters';
+import CreatorSupporters from '../components/creator/CreatorSupporters';
 import CreatorAbout from '../components/creator/CreatorAbout';
 
 const User = ({}) => {
@@ -174,7 +174,7 @@ const User = ({}) => {
       <div className="w-full flex flex-col lg:flex-row max-w-6xl pt-3 lg:space-x-10 space-y-5 lg:space-y-0">
         {/* User Content About and Comments (Left Panel) */}
         <div className="basis-7/12 flex flex-col pt-5 space-y-5 order-2 lg:order-first">
-          <CreatorComments creator={creator} />
+          <CreatorSupporters creator={creator} />
         </div>
         {/* User Content Donate Botton (Right Panel & Top) */}
         <div className="basis-5/12 flex flex-col lg:pt-5 space-y-5 ">

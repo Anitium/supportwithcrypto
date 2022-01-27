@@ -15,7 +15,17 @@ const CreatorSupporters = ({creator}) => {
 	            <a className="rounded-full h-8 w-8 border-2 border-blue-600 bg-blue-400"></a>
 	            <p>{x.message} - {formatCurrency(x.amount)}</p>
 	          </div>              		
-        	))}          
+        	))}  
+          { (!creator || creator.transactions == 0) && 
+              <div className='flex flex-col space-x-4 spache-y-4 items-center justify-center'>
+                <div className='flex'>
+                  No supporters yet? Share it on Twitter!
+                </div>
+                <div className='flex'>
+                  <img className="p-8 lg:block w-auto" src="./assets/img/no-supporters-yet.png" alt="Share" />
+                </div>
+              </div>
+          }        
         </div>
       </div>
     </>
