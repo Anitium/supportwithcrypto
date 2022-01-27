@@ -4,14 +4,11 @@ import { useForm } from "react-hook-form";
 import { ethers } from 'ethers';
 import { useEthers, useEtherBalance, useSendTransaction } from "@usedapp/core";
 
-import { useSymbol } from '../hooks/useSymbol';
+import classNames from '../utils/classutils';
+import { useSymbol, useRate } from '../hooks';
 import { DefaultLayout } from "../layout";
 import { getCreator, updateCreator } from '../api/creatorsapi';
-import classNames from '../utils/classutils';
-import { findChainById } from '../utils/cryptoutils'
-import CreatorProfile from '../components/creator/CreatorProfile';
-import CreatorSupporters from '../components/creator/CreatorSupporters';
-import CreatorAbout from '../components/creator/CreatorAbout';
+import { CreatorProfile, CreatorSupporters, CreatorAbout, CreatorEmbedCode} from '../components/creator';
 
 const User = ({}) => {
   // var
@@ -108,37 +105,43 @@ const User = ({}) => {
   const [crypto, setCrypto] = useState(0);
 
   const symbol = useSymbol(chainId);
+  const rate = useRate(chainId);
+
+  useEffect(() => {
+    updateDollar(dollar);
+  },[rate]);
 
   // functions
   const handleDollarChange = (event) => {
     updateDollar(event.target.value)
   };
 
-  function updateDollar(value){
+  const updateDollar = (value) => {
     setDollar(value);
-    setCrypto( parseInt(value)/findChainById(chainId).value );
+    setCrypto( value == '' ? '': parseFloat(value)/rate );
   }
 
   const handleCryptoChange = (e) => {
-    if(e.target.value.length>0) {
-      setDollar(parseInt(e.target.value)*100);
+    if(e.target.value.length > 0) {
+      setDollar(parseFloat(e.target.value) * rate);
       setCrypto(e.target.value);
     } else {
-
+      setDollar('')
+      setCrypto('')
     }
   }; 
 
   const addDonation = (event) => {
-    setDollars(dollar + 5);
+    setDollar( dollar == ''? 5: parseFloat(dollar) + 5);
+    setCrypto( (dollar == ''? 5: parseFloat(dollar) + 5)/rate );
   }
 
   const lessDonation = (event) => {
-    setDollars((dollar - 5) <=0 ? 0 : dollar - 5);
+    setDollar( dollar == ''? '' : parseFloat(dollar) - 5 <=0 ? 0 : parseFloat(dollar) - 5);
+    setCrypto( dollar == ''? '' : ( parseFloat(dollar) - 5 <=0 ? 0 : parseFloat(dollar) - 5)/rate );
   }
 
   const handleDonation = async (formData) => {
-  	console.log('form formData:', formData);
-  	console.log('form enableBtn:', enableBtn);
   	// validation
   	if(!enableBtn) {
   		alert('Must connect to the wallet first');
@@ -192,6 +195,7 @@ const User = ({}) => {
 				      			  </span>
 				      			</div>
 				      			<input type="text" name="dollars" id="dollars" value={dollar} onChange={handleDollarChange}
+                      placeholder='5'
 				      			  className={classNames('border border-swc-left h-12 focus:ring-swc-right block w-full pl-8 pr-12 sm:text-sm rounded-3xl text-gray-500 lg:text-2xl font-bold')}
 				      			/>
 				      		</div>
@@ -205,8 +209,9 @@ const User = ({}) => {
                       {symbol}
                     </span>
                     <input type="text" name="amount" id="amount" value={crypto} onChange={handleCryptoChange}
+                      placeholder='0'
                       className={classNames('border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 sm:text-sm rounded-r-lg text-gray-500 lg:text-2xl font-bold', errors && errors.amount ? "text-red-300 border-red-400": "text-blue-700 border-blue-400")}
-                      {...register("amount", { required: true })}
+                      
                     />
                   </div>
                 </div>
@@ -228,6 +233,7 @@ const User = ({}) => {
 			      </form>
           </div>
           { creator && creator.about && <CreatorAbout creator={creator} /> }
+          <CreatorEmbedCode />
         </div>
       </div>
     </section>

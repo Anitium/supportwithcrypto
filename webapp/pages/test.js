@@ -21,6 +21,7 @@ const Calculator = ({}) => {
 
   console.log('--- render');
   return (
+    <>
       <fieldset className="p-4">
         <legend>Enter dollars:</legend>
         <input className='border-2 border-gray-800'
@@ -36,6 +37,7 @@ const Calculator = ({}) => {
           onChange={handleCryptoChange} 
         />
       </fieldset>
+    </>
     );
   
 }
