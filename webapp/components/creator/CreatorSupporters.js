@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 
 import {formatCurrency} from '../../utils/cryptoutils';
 
 const CreatorSupporters = ({creator}) => {
-  const twitterurl = 'https://twitter.com/intent/tweet?text=You can support my work here => https://supportwithcrypto.com/0xdbf335f4aaf2e04439975c7b7f3bf32343a5d5fe'
-  const whatsappurl = 'https://wa.me/?text=Hi, you can now support my work here => https://supportwithcrypto.com/0xdbf335f4aaf2e04439975c7b7f3bf32343a5d5fe'
+  const router = useRouter();
+  const address = (router.query.creatorid == undefined? '':router.query.creatorid)
+
+  const twitterurl = 'https://twitter.com/intent/tweet?text=You can support my work here => https://supportwithcrypto.com/' + address
+  const whatsappurl = 'https://wa.me/?text=Hi, you can now support my work here => https://supportwithcrypto.com/' + address
 
   return (
     <>        
