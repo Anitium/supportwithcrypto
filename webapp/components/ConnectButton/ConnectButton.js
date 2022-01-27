@@ -1,28 +1,22 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useEthers, useEtherBalance } from "@usedapp/core";
-import { formatEther } from "@ethersproject/units";
 import { ethers } from 'ethers';
 import Web3Modal from "web3modal";
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
-import { findChainById } from '../../utils/cryptoutils'
+import { useSymbol } from '../../hooks/useSymbol';
+import { formatCurrency, formatAccount } from '../../utils/cryptoutils/';
 import { Logo } from '../Logo';
-
-const formatCurrency = (value) => value ? parseFloat(formatEther(value)).toFixed(4) : '0.000';
-
-const formatAccount = (account) => account && `${account.slice(0, 5)}...${account.slice(account.length - 4, account.length)}`;
 
 const ConnectButton = ({label}) => {
   // hooks
   const { account, chainId } = useEthers();
   const etherBalance = useEtherBalance(account);
 
-  const symbol = useMemo(()=> { 
-    return (chainId != undefined) ? findChainById(chainId).symbol : 'EHT'; 
-  }, [chainId]) 
-  
+  const symbol = useSymbol(chainId);
+
   // functions
   const handleConnect = async () => {
     try {

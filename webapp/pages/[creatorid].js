@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { ethers } from 'ethers';
 import { useEthers, useEtherBalance, useSendTransaction } from "@usedapp/core";
 
+import { useSymbol } from '../hooks/useSymbol';
 import { DefaultLayout } from "../layout";
 import { getCreator, updateCreator } from '../api/creatorsapi';
 import classNames from '../utils/classutils';
@@ -62,6 +63,7 @@ const User = ({}) => {
   	return account ? true : false;
   }, [account]);
 
+  // handle transaction
   useEffect(() => {
 	  const handleRecordTransaction = async (id, transaction) => {
 	  	// init
@@ -105,11 +107,9 @@ const User = ({}) => {
   const [dollar, setDollar] = useState(5);
   const [crypto, setCrypto] = useState(0);
 
-  const symbol = useMemo(()=> { 
-    if(chainId != undefined) updateDollar(dollar);
-    return (chainId != undefined) ? findChainById(chainId).symbol : 'EHT'; 
-  }, [chainId]) 
+  const symbol = useSymbol(chainId);
 
+  // functions
   const handleDollarChange = (event) => {
     updateDollar(event.target.value)
   };
@@ -136,7 +136,6 @@ const User = ({}) => {
     setDollars((dollar - 5) <=0 ? 0 : dollar - 5);
   }
 
-  // functions
   const handleDonation = async (formData) => {
   	console.log('form formData:', formData);
   	console.log('form enableBtn:', enableBtn);
