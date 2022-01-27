@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import {formatCurrency} from '../../utils/cryptoutils';
 
 const CreatorSupporters = ({creator}) => {
+  const twitterurl = 'https://twitter.com/intent/tweet?text=You can support my work here => https://supportwithcrypto.com/0xdbf335f4aaf2e04439975c7b7f3bf32343a5d5fe'
+  const whatsappurl = 'https://wa.me/?text=Hi, you can now support my work here => https://supportwithcrypto.com/0xdbf335f4aaf2e04439975c7b7f3bf32343a5d5fe'
 
   return (
     <>        
@@ -18,8 +20,24 @@ const CreatorSupporters = ({creator}) => {
         	))}  
           { (!creator || creator.transactions == 0) && 
               <div className='flex flex-col space-x-4 spache-y-4 items-center justify-center'>
-                <div className='flex'>
-                  No supporters yet? Share it on Twitter!
+                <div className='flex flex-col items-center'>
+                  <p>No supporters yet?</p>
+                   <p>Share on your social networks!</p>
+                </div>
+                <div className='flex flex-row items-center justify-center space-x-4 rounded-full'>
+                <div className='flex flex-row items-center justify-center space-x-4 '
+                 >
+                  <div> 
+                    <a href={twitterurl} target='_blank'>
+                      <img className="w-16 p-1 lg:block " src="./assets/img/social/twitter-logo.png" alt="Share" />
+                    </a>
+                  </div>
+                  <div className=''> 
+                    <a href={whatsappurl} target='_blank'>
+                      <img className="w-16 p-1 lg:block " src="./assets/img/social/whatsapp-logo.png" alt="Share" />
+                    </a>
+                  </div>
+                </div>
                 </div>
                 <div className='flex'>
                   <img className="p-8 lg:block w-auto" src="./assets/img/no-supporters-yet.png" alt="Share" />
