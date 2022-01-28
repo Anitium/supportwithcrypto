@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Blockies from "react-blockies";
+import colors from 'tailwindcss/colors'
 
 const Calculator = ({}) => {
 
@@ -22,21 +24,10 @@ const Calculator = ({}) => {
   console.log('--- render');
   return (
     <>
-      <fieldset className="p-4">
-        <legend>Enter dollars:</legend>
-        <input className='border-2 border-gray-800'
-          value={dollar}
-          onChange={handleDollarChange} 
-        />
-        <br/>
-        <p>ETHER</p>
-        <br/>
-        <input 
-          className='border-2 border-gray-800'
-          value={crypto} 
-          onChange={handleCryptoChange} 
-        />
-      </fieldset>
+        <div className='flex w-12 '>
+          <Blockies className=" max-h-12 min-w-full border-4 border-gray-500 rounded-full " seed={'AABBCCDDEE'}   scale={10}
+          color={colors.blue[500]} bgColor={colors.cyan[500]} />
+        </div>
     </>
     );
   

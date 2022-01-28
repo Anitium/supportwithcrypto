@@ -14,7 +14,7 @@ const CreatorProfile = ({creator}) => {
     <>
       <div className="flex flex-col w-full">
         {/*<img className="w-full max-h-40 md:max-h-60 xl:max-h-72 object-cover overflow-hidden" src={(creator && creator.avatar) ? creator.avatar : "/assets/img/users/default/header.jpg"}></-img> */}
-        <div className='w-full max-h-40 md:max-h-60 xl:max-h-72 object-cover overflow-hidden blur-md saturate-150'>
+        <div className='w-full max-h-24 md:max-h-32 xl:max-h-44 object-cover overflow-hidden blur-md saturate-150'>
           <Blockies seed={router.query.creatorid == undefined? 'AABBCCDDEE':router.query.creatorid} size={500} scale={20}
             color={colors.blue[500]} bgColor={colors.cyan[500]} />
         </div>
@@ -23,8 +23,11 @@ const CreatorProfile = ({creator}) => {
       <div className="flex justify-between max-w-6xl w-full">
         <div className="flex relative space-y-4 space-x-4 justify-center items-center">
           <div className="lg:-mt-8 ">
-            <div className="w-12 h-12 lg:w-32 lg:h-32">
-              <Blockies className="border-4 border-gray-50 rounded-full" seed={router.query.creatorid == undefined? 'AABBCCDDEE':router.query.creatorid}  size={10} scale={10}
+            <div className="flex w-16 md:w-24">
+              <Blockies className="max-h-16 md:max-h-24 min-w-full border-4 border-gray-50 rounded-full" 
+                seed={router.query.creatorid == undefined? 'AABBCCDDEE':router.query.creatorid}   
+                size={10}
+                scale={10}
                 color={colors.blue[500]} bgColor={colors.cyan[500]} />
             </div>
           </div>

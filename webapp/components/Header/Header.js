@@ -5,10 +5,12 @@ import { Logo } from '../Logo';
 
 const Navbar = () => {
   return (
-    <header className="bg-white top-0 sticky z-50">
+    <header className="bg-white top-0 sticky z-50 bg-[url('./../public/assets/img/rainbow.png')] bg-no-repeat">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 xl:px-24">
         <div className="flex">
-          <Logo size="w-12 h-12" />        
+          <a href="/">
+            <Logo size="w-12 h-12" />
+          </a>
         </div>
         <div className="flex space-x-2">
           <ConnectButton />
