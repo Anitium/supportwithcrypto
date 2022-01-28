@@ -148,7 +148,7 @@ const User = ({}) => {
         {/* User Content Donate Botton (Right Panel & Top) */}
         <div className="basis-5/12 flex flex-col lg:pt-5 space-y-5 ">
           <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
-            <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Support <strong>{(creator && creator.name)? creator.name : 'the Creator'}</strong></h2>
+            <h2 className="border-b border-gray-100 text-xl font-medium text-gray-700">Support <strong>{(creator && creator.name)? creator.name : 'the Creator'}</strong></h2>
 			      <form>
               <div className="flex flex-col space-y-6">
 				        <div className="flex flex-row w-full justify-between items-center space-x-6">
@@ -160,7 +160,7 @@ const User = ({}) => {
 				      	  </div>
 				      	  <div className="flex relative rounded-md shadow-sm text-gray-500">
 				      			<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span className='text-gray-400 lg:text-4xl font-bold text-gray-400'>
+                      <span className='text-gray-400 text-4xl font-bold'>
                         $
 				      			  </span>
 				      			</div>
@@ -171,7 +171,7 @@ const User = ({}) => {
                       value={dollar} 
                       onChange={e => setDollar(e.target.value)}
                       placeholder='0'
-				      			  className={classNames('border border-swc-left h-20 focus:ring-swc-right block w-48 pl-10 pr-12 sm:text-sm rounded-3xl text-gray-500 lg:text-5xl font-bold')}
+				      			  className={classNames('border border-swc-left h-20 focus:ring-swc-right block w-48 pl-10 pr-12 rounded-3xl text-gray-500 text-5xl font-bold')}
 				      			/>
 				      		</div>
                   <div className='flex'>
@@ -193,7 +193,7 @@ const User = ({}) => {
                       value={crypto}
                       onChange={e => (e.target.value.length > 0) ? setDollar(parseFloat(e.target.value) * rate) : setDollar(0)}
                       placeholder='0'
-                      className='border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 sm:text-sm rounded-r-lg text-gray-500 lg:text-2xl font-bold text-gray-500 border-swc-left'
+                      className='border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 rounded-r-lg text-gray-500 text-2xl font-bold'
                     />
                   </div>
                 </div>
@@ -204,7 +204,7 @@ const User = ({}) => {
                       id="message" 
                       name="message"
                       rows={3}
-	                    className='w-full border rounded-md border-swc-left pt-7 pb-2 px-3 hover:ring-swc-right text-base text-blue-700 placeholder-blue-500 border-blue-400'      
+	                    className='w-full border rounded-md border-swc-left pt-7 pb-2 px-3 hover:ring-swc-right text-base text-blue-700 placeholder-blue-500'      
                       value={message}
                       onChange={e => setMessage(e.target.value)}
 	                  />

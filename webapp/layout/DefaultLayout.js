@@ -5,7 +5,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
 const DefaultLayout = ({children}) => (
-    <div className="flex flex-col bg-gray-50 antialiased font-mono bg-no-repeat bg-[url('./../public/assets/img/rainbow.png')]">
+    <div className="flex flex-col bg-gray-50 antialiased font-mono bg-no-repeat bg-rainbow">
     	<Header />
     	{children}
 		  <Footer />

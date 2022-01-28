@@ -3,5 +3,5 @@
 }
 
 .gradient-via-transparent {
-    @apply  bg-gradient-to-r from-swc-left via-fuchsia-600 to-swc-right;
+    @apply  bg-gradient-to-br from-swc-left via-fuchsia-600 to-swc-right;
 }

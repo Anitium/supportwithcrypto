@@ -9,6 +9,9 @@ module.exports = {
       padding: '12px',
     },
     extend: {
+      backgroundImage: {
+        'rainbow' : "url('/assets/img/rainbow.png')",
+      },
       colors: {
         swc: {
           left: '#06b6d4',
