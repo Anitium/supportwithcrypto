@@ -1,12 +1,13 @@
 import React from 'react';
+import { Logo } from '../Logo';
 
 const Footer = () => {
   return (
-    <footer className="pt-8 flex flex-col items-center justify-center bg-gradient-to-r from-swc-left to-swc-right hover:bg-indigo-500">
+    <footer className="pt-8 flex flex-col items-center justify-center gradient-via-transparent">
       <div className='text-xs text-gray-100'>
-        <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
+        <a href='/'><Logo size="w-12 h-12" color="text-gray-100"/></a>
       </div>
-      <div className="container mx-auto flex space items-center justify-between h-64 px-4 xl:px-24">
+      <div className="container mx-auto flex space items-center justify-between h-32 px-4 xl:px-24">
         <div className="flex space-x-4 justify-center items-center">
           <label className="font-medium text-gray-100">Follow us in </label>
           <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>

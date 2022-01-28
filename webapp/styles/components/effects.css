@@ -1,3 +1,7 @@
 .gradient {
     @apply  bg-gradient-to-r from-swc-left to-swc-right;
 }
+
+.gradient-via-transparent {
+    @apply  bg-gradient-to-r from-swc-left via-fuchsia-600 to-swc-right;
+}
