@@ -4,7 +4,7 @@ import { findChainById } from '../../utils/cryptoutils/';
 
 const useRate = (chainId) => {
   const rate = useMemo(()=> {
-    return (chainId != undefined) ? findChainById(chainId).rate : 10000000000; 
+    return (chainId != undefined) ? findChainById(chainId).rate : 1; 
   }, [chainId]);
 
   return rate;

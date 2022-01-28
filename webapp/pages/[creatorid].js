@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useForm } from "react-hook-form";
 import { ethers } from 'ethers';
 import { useEthers, useEtherBalance, useSendTransaction } from "@usedapp/core";
 
@@ -11,16 +10,18 @@ import { getCreator, updateCreator } from '../api/creatorsapi';
 import { CreatorProfile, CreatorSupporters, CreatorAbout, CreatorEmbedCode} from '../components/creator';
 
 const User = ({}) => {
-  // var
-  const lastFormData = useRef({});
-
   // state
   const [creator, setCreator] = useState({
   	transactions:[],
   });
-  const [error, setError] = useState('');
+  const [, setError] = useState('');
   const [refresh, setRefresh] = useState(true);
-
+  
+  // form management
+  const [dollar, setDollar] = useState(5);
+  const [crypto, setCrypto] = useState(0);
+  const [message, setMessage] = useState('');
+  
   // hooks
   // router
   const router = useRouter();
@@ -45,9 +46,6 @@ const User = ({}) => {
     }
   }, [router.query, refresh]);
 
-  // form management
-  const { register, reset, handleSubmit, formState: { errors } } = useForm();
-
   // ethers management
   const { account, chainId } = useEthers();
   const etherBalance = useEtherBalance(account);
@@ -64,7 +62,6 @@ const User = ({}) => {
   useEffect(() => {
 	  const handleRecordTransaction = async (id, transaction) => {
 	  	// init
-	  	const formData = lastFormData.current;
 	  	const ts = new Date().getTime();
 	  	const { creatorid } = router.query;
 	  	const data = {...creator};
@@ -73,7 +70,7 @@ const User = ({}) => {
 	  	data.transactions.push({
 	  		'transactionid': id,
 	        'amount': transaction.value,
-	        'message': formData.message,
+	        'message': message,
 	        'created': ts,
 	        'from': account,
 	        'to': creatorid,
@@ -87,8 +84,9 @@ const User = ({}) => {
 	  		setError(response.errorMessage);
 	  	}
 
-	  	// update state
-	  	reset();
+      // update state
+      setMessage('');
+      setDollar(5);
 	  	setRefresh(!refresh);
 	  };
 
@@ -98,64 +96,35 @@ const User = ({}) => {
   	}
   }, [transactionState]);
 
-  // logs
-  console.log('--- account, chainId, balance, enableBtn, transactionState', account, chainId, etherBalance, enableBtn, transactionState, creator);
-
-  const [dollar, setDollar] = useState(5);
-  const [crypto, setCrypto] = useState(0);
-
   const symbol = useSymbol(chainId);
   const rate = useRate(chainId);
 
   useEffect(() => {
-    updateDollar(dollar);
-  },[rate]);
+    setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
+  },[rate, dollar]);
 
   // functions
-  const handleDollarChange = (event) => {
-    updateDollar(event.target.value)
-  };
 
-  const updateDollar = (value) => {
-    setDollar(value);
-    setCrypto( value == '' ? '': parseFloat(value)/rate );
-  }
+  const handleDonation = async (e) => {
+    // prevent bubble up the event
+    e.preventDefault();
 
-  const handleCryptoChange = (e) => {
-    if(e.target.value.length > 0) {
-      setDollar(parseFloat(e.target.value) * rate);
-      setCrypto(e.target.value);
-    } else {
-      setDollar('')
-      setCrypto('')
-    }
-  }; 
-
-  const addDonation = (event) => {
-    setDollar( dollar == ''? 5: parseFloat(dollar) + 5);
-    setCrypto( (dollar == ''? 5: parseFloat(dollar) + 5)/rate );
-  }
-
-  const lessDonation = (event) => {
-    setDollar( dollar == ''? '' : parseFloat(dollar) - 5 <=0 ? 0 : parseFloat(dollar) - 5);
-    setCrypto( dollar == ''? '' : ( parseFloat(dollar) - 5 <=0 ? 0 : parseFloat(dollar) - 5)/rate );
-  }
-
-  const handleDonation = async (formData) => {
   	// validation
   	if(!enableBtn) {
   		alert('Must connect to the wallet first');
-  		return
+  		return;
   	}
   	// init
   	const { creatorid } = router.query;
-  	const value = ethers.utils.parseUnits(formData.amount, 'ether');
+  	const value = ethers.utils.parseUnits(crypto, 'ether');
 
   	// send transaction
-  	lastFormData.current = formData;
   	sendTransaction({ 'from': account, 'to': creatorid, value });
   };
 
+  // logs
+  console.log('--- account, chainId, balance, enableBtn, transactionState', account, chainId, etherBalance, enableBtn, transactionState, creator);
+  console.log('dolar, crypto, rate', dollar, crypto, rate);
   return (
   <content className="container mx-auto flex flex-col">
     {/* User Profile Header */}
@@ -182,25 +151,36 @@ const User = ({}) => {
         <div className="basis-5/12 flex flex-col lg:pt-5 space-y-5 ">
           <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
             <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Support <strong>{(creator && creator.name)? creator.name : 'the Creator'}</strong></h2>
-			      <form onSubmit={handleSubmit(handleDonation)}>
+			      <form>
               <div className="flex flex-col space-y-6">
 				        <div className="flex flex-row w-full justify-between items-center space-x-6">
                   <div className='flex'>
-                    <button onClick={lessDonation}><div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">-</div></button>
+                    <button 
+                      onClick={e => { e.preventDefault(); setDollar( !dollar ? 5 : parseFloat(dollar) - 5 <=0 ? 0 : parseFloat(dollar) - 5) }}
+                    >
+                  <div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">-</div></button>
 				      	  </div>
 				      	  <div className="flex relative rounded-md shadow-sm text-gray-500">
 				      			<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-				      			  <span className={classNames('text-gray-400 lg:text-4xl font-bold ', errors && errors.amount ? 'text-red-400' : 'text-gray-400')}>
+                      <span className='text-gray-400 lg:text-4xl font-bold text-gray-400'>
                         $
 				      			  </span>
 				      			</div>
-				      			<input type="text" name="dollars" id="dollars" value={dollar} onChange={handleDollarChange}
-                      placeholder='5'
+                    <input 
+                      type="text" 
+                      name="dollars" 
+                      id="dollars" 
+                      value={dollar} 
+                      onChange={e => setDollar(e.target.value)}
+                      placeholder='0'
 				      			  className={classNames('border border-swc-left h-20 focus:ring-swc-right block w-48 pl-10 pr-12 sm:text-sm rounded-3xl text-gray-500 lg:text-5xl font-bold')}
 				      			/>
 				      		</div>
                   <div className='flex'>
-                    <button onClick={addDonation}><div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">+</div></button>
+                    <button 
+                      onClick={e => { e.preventDefault(); setDollar( !dollar ? 5: parseFloat(dollar) + 5) }}
+                    >
+                  <div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">+</div></button>
 				      	  </div>
 			          </div>
                 <div className="flex flex-row w-full">
@@ -208,23 +188,36 @@ const User = ({}) => {
                     <span className="gradient inline-flex h-full w-32 items-center justify-center rounded-l-md text-2xl font-bold text-gray-100">
                       {symbol}
                     </span>
-                    <input type="text" name="amount" id="amount" value={crypto} onChange={handleCryptoChange}
+                    <input
+                      type="text"
+                      name="amount"
+                      id="amount"
+                      value={crypto}
+                      onChange={e => (e.target.value.length > 0) ? setDollar(parseFloat(e.target.value) * rate) : setDollar(0)}
                       placeholder='0'
-                      className={classNames('border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 sm:text-sm rounded-r-lg text-gray-500 lg:text-2xl font-bold', errors && errors.amount ? "text-red-300 border-red-400": "text-gray-500 border-swc-left")}
+                      className='border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 sm:text-sm rounded-r-lg text-gray-500 lg:text-2xl font-bold text-gray-500 border-swc-left'
                     />
                   </div>
                 </div>
 	              <div>
 	                <div className="mx-auto block relative mt-0 font-normal">
 				      	    <label className="top-0 left-0 absolute pt-2 px-3 text-left text-xs text-gray-600 font-normal">Your message to creator...</label>
-	                  <textarea id="message" name="message" rows={3}
-	                    className={classNames('w-full border rounded-md border-swc-left pt-7 pb-2 px-3 hover:ring-swc-right text-base  ', errors && errors.message ? "text-red-300 placeholder-red-500 border-red-400": "text-blue-700 placeholder-blue-500 border-blue-400")}      
-	                    {...register("message", { required: true })}
+                    <textarea
+                      id="message" 
+                      name="message"
+                      rows={3}
+	                    className='w-full border rounded-md border-swc-left pt-7 pb-2 px-3 hover:ring-swc-right text-base text-blue-700 placeholder-blue-500 border-blue-400'      
+                      value={message}
+                      onChange={e => setMessage(e.target.value)}
 	                  />
 	                </div>
 	              </div>
 	              <div className="flex items-center">
-	                <button type="submit" className="primary-btn">
+                  <button 
+                    type="submit" 
+                    className={classNames("primary-btn hover:scale-110 transform transition-all duration-700 ease-in-out cursor-pointer", enableBtn ? '' : 'cursor-not-allowed opacity-50')}
+                    onClick={handleDonation}
+                  >
 	                  Donate
 	                </button>
 	              </div>
