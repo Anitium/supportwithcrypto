@@ -104,7 +104,6 @@ const User = ({}) => {
   },[rate, dollar]);
 
   // functions
-
   const handleDonation = async (e) => {
     // prevent bubble up the event
     e.preventDefault();
@@ -116,15 +115,14 @@ const User = ({}) => {
   	}
   	// init
   	const { creatorid } = router.query;
-  	const value = ethers.utils.parseUnits(crypto, 'ether');
+  	const value = ethers.utils.parseUnits(crypto.toString(), 'ether');
 
   	// send transaction
-  	sendTransaction({ 'from': account, 'to': creatorid, value });
+    sendTransaction({ 'from': account, 'to': creatorid, value });
   };
 
   // logs
-  console.log('--- account, chainId, balance, enableBtn, transactionState', account, chainId, etherBalance, enableBtn, transactionState, creator);
-  console.log('dolar, crypto, rate', dollar, crypto, rate);
+  console.log('--- account, chainId, balance, crypto, enableBtn, transactionState', account, chainId, etherBalance, crypto, enableBtn, transactionState, creator);
   return (
   <content className="container mx-auto flex flex-col">
     {/* User Profile Header */}
