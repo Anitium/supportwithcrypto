@@ -1,8 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { symbol } from 'prop-types';
 import { useRouter } from 'next/router';
 
+import Blockies from "react-blockies";
+import colors from 'tailwindcss/colors'
+
 import {formatCurrency} from '../../utils/cryptoutils';
+import { formatAccount } from '../../utils/cryptoutils';
 
 const CreatorSupporters = ({creator}) => {
   const router = useRouter();
@@ -16,10 +20,28 @@ const CreatorSupporters = ({creator}) => {
       <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
         <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Suporters</h2>
         <div className="flex flex-col space-y-6">
-        	{creator && creator.transactions && creator.transactions.map(x =>(
-	          <div key={x.transactionid} className="flex h-14 items-center space-x-3 p-4 rounded-md bg-gradient-to-r from-cyan-500 to-blue-100 ">
-	            <a className="rounded-full h-8 w-8 border-2 border-blue-600 bg-blue-400"></a>
-	            <p>{x.message} - {formatCurrency(x.amount)}</p>
+        	{creator && creator.transactions && creator.transactions.map(tx =>(
+	          <div key={tx.transactionid} className="flex items-center space-x-3 p-4 rounded-md gradient-clear text-gray-700">
+              <div className='flex w-1/3'>
+                <div className='flex flex-col space-y-2'>
+                  <div className='flex flex-row justify-center space-x-3 items-stretch'>
+                    <div className="flex w-8 md:w-8">
+                      <Blockies className="max-h-8 md:max-h-8 min-w-full border-2 border-gray-50 rounded-full" 
+                        seed={tx.from} size={10} scale={10} color={colors.blue[500]} bgColor={colors.cyan[500]} />
+                    </div>
+                    <div className='flex bg-white/30 items-center p-1 text-xs rounded-md'>
+                        {formatAccount(tx.from)}
+                    </div>
+                  </div>
+                  <div className='flex flex-row items-center space-x-2 justify-start'>
+                    <div className="flex text-lg">{formatCurrency(tx.amount)}</div>
+                    <a><div className="rounded-full h-8 w-8 bg-swc-left"></div></a>
+                  </div>
+                </div>
+              </div>
+              <div className='flex w-2/3 border bg-white/40 rounded-md h-full text-center items-center p-2 '>
+                <p>{tx.message}</p>
+              </div>
 	          </div>              		
         	))}  
           { (!creator || creator.transactions == 0) && 
