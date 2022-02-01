@@ -97,10 +97,10 @@ const User = ({}) => {
   }, [transactionState]);
 
   const symbol = useSymbol(chainId);
-  const rate = useRate(chainId);
+  const [rate, loadingRate] = useRate(chainId, account);
 
   useEffect(() => {
-    setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
+    (loadingRate)? '': setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
   },[rate, dollar]);
 
   // functions
@@ -171,7 +171,7 @@ const User = ({}) => {
                       value={dollar} 
                       onChange={e => setDollar(e.target.value)}
                       placeholder='0'
-				      			  className={classNames('border border-swc-left h-20 focus:ring-swc-right block w-48 pl-10 pr-12 rounded-3xl text-gray-500 text-5xl font-bold')}
+				      			  className={classNames('border border-swc-left h-20 focus:ring-swc-right block w-full pl-10 pr-4 rounded-3xl text-gray-500 text-5xl font-bold')}
 				      			/>
 				      		</div>
                   <div className='flex'>
@@ -191,7 +191,7 @@ const User = ({}) => {
                       name="amount"
                       id="amount"
                       value={crypto}
-                      onChange={e => (e.target.value.length > 0) ? setDollar(parseFloat(e.target.value) * rate) : setDollar(0)}
+                      onChange={e => (e.target.value.length > 0 && !loadingRate) ? setDollar(parseFloat(e.target.value) * rate) : setDollar(0)}
                       placeholder='0'
                       className='border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 rounded-r-lg text-gray-500 text-2xl font-bold'
                     />
