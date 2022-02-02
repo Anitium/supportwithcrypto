@@ -97,10 +97,14 @@ const User = ({}) => {
   }, [transactionState]);
 
   const symbol = useSymbol(chainId);
-  const [rate, loadingRate] = useRate(chainId, account);
+  //const [rate, loadingRate] = useRate(chainId);
+  const loadingRate = false;
+  const rate = useRate(chainId);
 
   useEffect(() => {
-    (loadingRate)? '': setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
+    console.log('useEffect='+rate);
+    setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
+    //(loadingRate)? '': setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
   },[rate, dollar]);
 
   // functions
