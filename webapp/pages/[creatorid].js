@@ -97,14 +97,11 @@ const User = ({}) => {
   }, [transactionState]);
 
   const symbol = useSymbol(chainId);
-  //const [rate, loadingRate] = useRate(chainId);
-  const loadingRate = false;
   const rate = useRate(chainId);
 
   useEffect(() => {
-    console.log('useEffect='+rate);
+    console.log('new rate calculation:'+rate);
     setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
-    //(loadingRate)? '': setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
   },[rate, dollar]);
 
   // functions
@@ -195,7 +192,7 @@ const User = ({}) => {
                       name="amount"
                       id="amount"
                       value={crypto}
-                      onChange={e => (e.target.value.length > 0 && !loadingRate) ? setDollar(parseFloat(e.target.value) * rate) : setDollar(0)}
+                      onChange={e => (e.target.value.length > 0) ? setDollar(parseFloat(e.target.value) * rate) : setDollar(0)}
                       placeholder='0'
                       className='border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 rounded-r-lg text-gray-500 text-2xl font-bold'
                     />

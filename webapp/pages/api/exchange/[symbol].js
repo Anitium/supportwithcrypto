@@ -8,6 +8,5 @@ export default async function handler(req, res) {
       const result = await cryptoRate(symbol);
       return res.json(result);
     }
-
   }
 };

@@ -25,11 +25,10 @@ getLogger().info(`EXCHANGE_TOKEN: ${EXCHANGE_TOKEN}`);
 getLogger().info(`TOKEN_NAME: ${TOKEN_NAME}`);
 
 export async function cryptoRateFromExchange() {
-
   try {
     // Connecting to the Exchange Market
     getLogger().debug(`Exchange Market Api call`);
-    let response = await axios.get(`${EXCHANGE_URI}?symbol=BTC,ETH,SOL,MATIC&convert=USD`, {
+    const response = await axios.get(`${EXCHANGE_URI}?symbol=BTC,ETH,SOL,MATIC&convert=USD`, {
       headers: {
         [TOKEN_NAME] : EXCHANGE_TOKEN,
       },

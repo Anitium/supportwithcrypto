@@ -12,16 +12,16 @@ export async function cryptoRate(symbol) {
       let updated = true;
 
       // fetch latest rate in database
-      let rates = await db.collection('exchange').findOne({}, {sort:{$natural:-1}});
+      let rates = await db.collection('exchange').findOne({'exchangerate-id': 'current-rate'});
       
       if(needsUpdate(rates)){
         getLogger().debug(`Rate needs update`);
-        updated = false
+        updated = false;
         let response = await cryptoRateFromExchange();
         if(response && response.success){
-          updated = true
-          rates = response.payload
-          await updateCryptoRate(rates)
+          updated = true;
+          rates = response.payload;
+          await updateCryptoRate(rates);
           getLogger().debug(`Rate updated`);
         }
       }
@@ -52,11 +52,16 @@ export async function updateCryptoRate(data) {
     let { db } = await getDbConnection();
 
     // normalize data (Dates)
-    data = normalizeData(data)
+    data = normalizeData(data);
     
-    // insert latest exchange rates
-    await db.collection('exchange').insertOne(data);
-
+    // update the current exchange rate
+    await db.collection('exchange').update({ 'exchangerate-id': 'current-rate'}, {
+      $set: {
+        'data':    data.data,
+        'status':  data.status,
+      }
+    }, { upsert:true });
+    
     // return a message
     return {
       success: true,
@@ -75,11 +80,11 @@ export async function updateCryptoRate(data) {
 };
 
 function normalizeData(data){
-  data.status.timestamp = new Date(data.status.timestamp)
-  return data
+  data.status.timestamp = new Date(data.status.timestamp);
+  return data;
 }
 
 function needsUpdate(data){
   var fiveMinuteAgo = new Date( Date.now() - 1000 * (60 * 5) )
-  return !data || data.status.timestamp < fiveMinuteAgo
+  return !data || data.status.timestamp < fiveMinuteAgo;
 }
