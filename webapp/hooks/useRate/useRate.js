@@ -21,8 +21,6 @@ const useRate = (chainId) => {
     // fetch data
     fetchExchangeRates(chainId)
   }, [chainId]);
-  
-  console.log('useRate=' + rate);
   return rate;
 };
 
