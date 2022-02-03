@@ -1,3 +1,6 @@
+import { getAuthKey } from '../../utils/auth';
+import { getItem } from '../../utils/storage';
+
 export const getCreator = async (id) => {
 	try {
 		const url = `/api/creators/${id}`;
@@ -16,7 +19,11 @@ export const getCreator = async (id) => {
 
 export const updateCreator = async (data) => {
 	try {
-		console.log(data);
+    const key = getAuthKey('swc');
+    const item = getItem(key);
+    data.auth = item;
+
+		console.log('sending creator data:', data);
 		const response = await fetch('/api/creators', {
 			method: 'POST',
 			headers: {
