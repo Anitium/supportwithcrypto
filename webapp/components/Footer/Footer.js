@@ -18,7 +18,7 @@ const Footer = () => {
           <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
         </div>
         <div className="flex">
-          <a><div className="rounded-full h-8 w-8 bg-swc-left"></div></a>
+          <a href='/terms-conditions' className='text-gray-200'>Terms & Conditions</a>
         </div>
       </div>
       <div className='text-xs text-gray-100'>
