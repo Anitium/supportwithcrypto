@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes, { symbol } from 'prop-types';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import Blockies from "react-blockies";
 import colors from 'tailwindcss/colors'
@@ -54,14 +55,14 @@ const CreatorSupporters = ({creator}) => {
                 <div className='flex flex-row items-center justify-center space-x-4 '
                  >
                   <div> 
-                    <a href={twitterurl} target='_blank'>
+                    <Link href={twitterurl}>
                       <img className="w-16 p-1 lg:block " src="./assets/img/social/twitter-logo.png" alt="Share" />
-                    </a>
+                    </Link>
                   </div>
                   <div className=''> 
-                    <a href={whatsappurl} target='_blank'>
+                    <Link href={whatsappurl}>
                       <img className="w-16 p-1 lg:block " src="./assets/img/social/whatsapp-logo.png" alt="Share" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 </div>

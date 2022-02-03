@@ -1,11 +1,13 @@
 import React from 'react';
+
+import Link from 'next/link';
 import { Logo } from '../Logo';
 
 const Footer = () => {
   return (
     <footer className="pt-8 flex flex-col items-center justify-center gradient-via-transparent">
       <div className='text-xs text-gray-100'>
-        <a href='/'><Logo size="w-12 h-12" color="text-gray-100"/></a>
+        <Link href='/'><Logo size="w-12 h-12" color="text-gray-100"/></Link>
       </div>
       <div className="container mx-auto flex space items-center justify-between h-32 px-4 xl:px-24">
         <div className="flex space-x-4 justify-center items-center">
