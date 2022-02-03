@@ -97,10 +97,9 @@ const User = ({}) => {
   }, [transactionState]);
 
   const symbol = useSymbol(chainId);
-  const rate = useRate(chainId);
+  const [rate, rateDate] = useRate(chainId);
 
   useEffect(() => {
-    console.log('new rate calculation:'+rate);
     setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
   },[rate, dollar]);
 
@@ -182,9 +181,9 @@ const User = ({}) => {
                   <div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">+</div></button>
 				      	  </div>
 			          </div>
-                <div className="flex flex-row w-full">
+                <div className="flex flex-col w-full">
                   <div className="flex relative w-full rounded-md shadow-sm">
-                    <span className="gradient inline-flex h-full w-32 items-center justify-center rounded-l-md text-2xl font-bold text-gray-100">
+                    <span className="gradient inline-flex h-12 w-32 items-center justify-center rounded-l-md text-2xl font-bold text-gray-100">
                       {symbol}
                     </span>
                     <input
@@ -196,6 +195,9 @@ const User = ({}) => {
                       placeholder='0'
                       className='border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 rounded-r-lg text-gray-500 text-2xl font-bold'
                     />
+                  </div>
+                  <div className='flex text-xs text-left text-gray-400 pt-2'>
+                    rate {rate} on {rateDate} 
                   </div>
                 </div>
 	              <div>

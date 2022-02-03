@@ -9,6 +9,7 @@ export async function cryptoRate(symbol) {
       
       // If no rate we better set a higher value
       let rate = 1000000;
+      let rateDate = new Date('2008-01-01 00:00:00.000Z');
       let updated = true;
 
       // fetch latest rate in database
@@ -21,16 +22,18 @@ export async function cryptoRate(symbol) {
         if(response && response.success){
           updated = true;
           rates = response.payload;
-          await updateCryptoRate(rates);
+          rates = await updateCryptoRate(rates);
           getLogger().debug(`Rate updated`);
         }
       }
 
       rate = rates.data[symbol].quote.USD.price;
+      rateDate = rates.status.timestamp;
+
       getLogger().debug(`New network ${symbol} and rate ${rate}`);
 
       return {
-        payload: rate, 
+        payload: {rate, rateDate},
         updated: updated,
         success: true,
       };
