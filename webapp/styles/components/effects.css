@@ -9,3 +9,7 @@
 .gradient-clear {
   @apply bg-gradient-to-r from-swc-left to-blue-100
 }
+
+.default-bg{
+  @apply bg-no-repeat bg-rainbow
+}
