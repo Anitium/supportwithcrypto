@@ -69,12 +69,12 @@ const User = ({}) => {
 	  	// register transaction
 	  	data.transactions.push({
 	  		'transactionid': id,
-	        'amount': transaction.value,
-	        'message': message,
-	        'created': ts,
-	        'from': account,
-	        'to': creatorid,
-	        'chain': chainId,
+        'amount': transaction.value,
+        'message': message,
+        'created': ts,
+        'from': account,
+        'to': creatorid,
+        'chain': chainId,
 	  	});
 	  	const response = await updateCreator(data);
 	  	
