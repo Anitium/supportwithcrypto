@@ -11,7 +11,7 @@ const Index = () => {
       </section>
     </content>
     <content className="flex items-center justify-center py-20 bg-white">
-      <div className='flex max-w-6xl'>
+      <div className='container flex max-w-6xl'>
         <section className='flex flex-row w-full justify-center items-center'>
           <HomeTeam />
         </section>

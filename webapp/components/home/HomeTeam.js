@@ -7,8 +7,8 @@ import TeamMember from './TeamMember';
 const HomeTeam = () => {
   return (
     <>
-      <div className='flex flex-row w-full items-star justify-start space-x-10'>
-        <div className='flex flex-col items-top justify-start align-top w-1/3 space-y-2'>
+      <div className='flex flex-col lg:flex-row  w-full items-center space-y-10 space-x-10 px-10 lg:px-0 lg:items-start lg:justify-start lg:space-y-0'>
+        <div className='flex flex-col items-start justify-start align-top space-y-2 lg:w-1/3 '>
           <h1 className='flex text-4xl font-extrabold text-gray-600'>Our Team</h1>
           <p className='flex text-2xl text-gray-400'>Meet our team of digital warriors, ready to harness the Force for good.</p>
           <div className="flex flex-row space-x-3 pt-2 items-center">
@@ -24,19 +24,25 @@ const HomeTeam = () => {
             </Link>
           </div>
         </div>
-        <div className='flex w-2/3 space-x-16'>
-          <TeamMember name='Karel Becerra' title='Entrepeneur' avatar='/assets/img/team/karel.jpg'
-            summary='Fast learner, hard worker and team player with strong critical thinking, problem solving and time management skills.'
-            address=''
-            twitter='karelbecerra'
-            linkedin='karelbecerra'
-          />
-          <TeamMember name='Juan C Olamendy' title='Entrepeneur' avatar='/assets/img/team/juanc.jpg'
-            summary='Fast learner, hard worker and team player with strong critical thinking, problem solving and time management skills.'
-            address=''
-            twitter='juancolamendy'
-            linkedin='juancolamendy'
-          />
+        <div className='flex lg:w-2/3'>
+          <div className='flex flex-col items-center space-y-10 md:flex-row md:space-x-16 md:space-y-0'>
+            <div className="flex w-2/3 md:w-1/2">
+              <TeamMember name='Karel Becerra' title='Entrepreneur' avatar='/assets/img/team/karel.jpg'
+                summary='Crypto/Web3 Ξ · Find me coding or fishing at Caribean Sea 🐟  🏖  🇺🇸 🌴  · wagmi 🙏'
+                address=''
+                twitter='http://twitter.com/karelbecerra'
+                linkedin='https://www.linkedin.com/in/karelbecerra'
+              />
+            </div>
+            <div className="flex w-2/3 md:w-1/2">
+              <TeamMember name='Juan C Olamendy' title='Entrepreneur' avatar='/assets/img/team/juanc.jpg'
+                summary='Indie Hacker · Talking about SaaS 🚀 · Building AI/Web3 Ξ products 🛠️ in public · '
+                address=''
+                twitter='http://twitter.com/juancolamendy'
+                linkedin='https://www.linkedin.com/in/juancolamendy'
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
