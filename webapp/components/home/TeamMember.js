@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
+
 import { LinkedInIcon, WalletIcon, TwitterIcon } from '../icons';
 
 const TeamMember = ({name, avatar, title, summary, address, twitter, linkedin}) => {
@@ -10,15 +12,21 @@ const TeamMember = ({name, avatar, title, summary, address, twitter, linkedin}) 
       <h1 className='text-2xl text-blue-600 font-bold'>{title}</h1>
       <p className='text-lg text-gray-400 pt-4'>{summary}</p>
       <div className="flex flex-row space-x-3 pt-2 items-center">
-        <a href={address} className="flex w-6 h-6 text-gray-400">
-          <WalletIcon />
-        </a>
-        <a href={twitter} target='_blank' className="flex w-6 h-6 text-gray-400">
-          <TwitterIcon />
-        </a>
-        <a href={linkedin} target='_blank' className="flex w-6 h-6 text-gray-400">
-          <LinkedInIcon />
-        </a>
+        <Link href={address}>
+          <a className="flex w-6 h-6 text-gray-400">
+            <WalletIcon />
+          </a>
+        </Link>
+        <Link href={twitter}>
+          <a target='_blank' className="flex w-6 h-6 text-gray-400">
+            <TwitterIcon />
+          </a>
+        </Link>
+        <Link href={linkedin}>
+          <a target='_blank' className="flex w-6 h-6 text-gray-400">
+            <LinkedInIcon />
+          </a>
+        </Link>
       </div>
     </div>
 );

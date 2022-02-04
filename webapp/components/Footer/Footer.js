@@ -15,12 +15,16 @@ const Footer = () => {
       <div className="container mx-auto flex space items-center justify-between h-32 px-4 xl:px-24">
         <div className="flex space-x-4 justify-center items-center">
           <label className="font-medium text-gray-100">find us in</label>
-          <a href="/" className="flex w-8 h-8 text-blue-300">
-            <WalletIcon />
-          </a>
-          <a href="https://twitter.com/supportwithc" target='_blank' className="flex w-8 h-8 text-blue-300">
-            <TwitterIcon />
-          </a>
+          <Link href="/" >
+            <a className="flex w-8 h-8 text-blue-300">
+              <WalletIcon />
+            </a>
+          </Link>
+          <Link href="https://twitter.com/supportwithc">
+            <a  target='_blank' className="flex w-8 h-8 text-blue-300">
+              <TwitterIcon />
+            </a>
+          </Link>
         </div>
         <div className="flex text-gray-200">
           <Link href='/terms-conditions' className='text-gray-200'>Terms & Conditions</Link>

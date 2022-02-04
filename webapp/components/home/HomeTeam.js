@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+
 import { TwitterIcon, WalletIcon } from '../icons';
 import TeamMember from './TeamMember';
 
@@ -10,12 +12,16 @@ const HomeTeam = () => {
           <h1 className='flex text-4xl font-extrabold text-gray-600'>Our Team</h1>
           <p className='flex text-2xl text-gray-400'>Meet our team of digital warriors, ready to harness the Force for good.</p>
           <div className="flex flex-row space-x-3 pt-2 items-center">
-            <a href='' className="flex w-6 h-6 text-gray-400">
-              <WalletIcon />
-            </a>
-            <a href='/' target='_blank' className="flex w-6 h-6 text-gray-400">
-              <TwitterIcon />
-            </a>
+            <Link href=''>
+              <a  className="flex w-6 h-6 text-gray-400">
+                <WalletIcon />
+              </a>
+            </Link>
+            <Link href='/' >
+              <a target='_blank' className="flex w-6 h-6 text-gray-400">
+                <TwitterIcon />
+              </a>
+            </Link>
           </div>
         </div>
         <div className='flex w-2/3 space-x-16'>
