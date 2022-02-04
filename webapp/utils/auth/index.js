@@ -42,3 +42,19 @@ export const verifyMessage = async ({ message, signer, signature }) => {
 export const getAuthKey = app => {
   return `authData/${app}`;
 };
+
+export const verifyAuthHttpReq = async req => {
+  const data = req.body;
+  console.log('request data:', data);
+
+  // protect endpoint
+  let isValid = false;
+  if(data.auth && data.auth.authData){
+    isValid = await verifyMessage({
+      message: data.auth.authData.message,
+      signer: data.auth.authData.address,
+      signature: data.auth.authData.signature
+    });
+  }
+  return isValid;
+};

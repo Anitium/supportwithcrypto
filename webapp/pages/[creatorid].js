@@ -8,6 +8,7 @@ import { useSymbol, useRate } from '../hooks';
 import { DefaultLayout } from "../layout";
 import { getCreator, updateCreator } from '../api/creatorsapi';
 import { CreatorProfile, CreatorSupporters, CreatorAbout, CreatorEmbedCode} from '../components/creator';
+import { Spinner } from '../components/Spinner';
 
 const User = ({}) => {
   // state
@@ -55,8 +56,17 @@ const User = ({}) => {
 
   // input validation
   const enableBtn = useMemo(() => {
-  	return account ? true : false;
-  }, [account]);
+    if(!account) {
+      return false;
+    }
+    if( isNaN(crypto) ) {
+      return false;
+    }
+    if(transactionState.status.toLowerCase() === 'mining') {
+      return false;
+    }
+    return true;
+  }, [account, crypto, transactionState]);
 
   // handle transaction
   useEffect(() => {
@@ -110,7 +120,6 @@ const User = ({}) => {
 
   	// validation
   	if(!enableBtn) {
-  		alert('Must connect to the wallet first');
   		return;
   	}
   	// init
@@ -216,10 +225,11 @@ const User = ({}) => {
 	              <div className="flex items-center">
                   <button 
                     type="submit" 
-                    className={classNames("primary-btn hover:scale-110 transform transition-all duration-700 ease-in-out cursor-pointer", enableBtn ? '' : 'cursor-not-allowed opacity-50')}
+                    className={classNames("flex items-center justify-center primary-btn hover:scale-110 transform transition-all duration-700 ease-in-out cursor-pointer", enableBtn ? '' : 'cursor-not-allowed opacity-50')}
                     onClick={handleDonation}
                   >
-	                  Donate
+                    { transactionState.status.toLowerCase() === 'mining' && <Spinner color="pink" /> }
+                    <span>{ transactionState.status.toLowerCase() === 'mining' ? 'Donating ...' : 'Donate'}</span>
 	                </button>
 	              </div>
               </div>
