@@ -5,13 +5,17 @@ import { DefaultLayout } from '../layout';
 const Index = () => {
   return (
     <>
-    <content className="container mx-auto flex flex-col my-10 max-w-6xl">
+    <content className="container mx-auto flex flex-col my-24 max-w-6xl">
       <section className='flex flex-row w-full justify-center space-x-10'>
         <HomeIntro />
       </section>
-      <section className='flex flex-row w-full justify-center items-center'>
-        <HomeTeam />
-      </section>
+    </content>
+    <content className="flex items-center justify-center py-20 bg-white">
+      <div className='flex max-w-6xl'>
+        <section className='flex flex-row w-full justify-center items-center'>
+          <HomeTeam />
+        </section>
+      </div>
     </content>
     </>
   )

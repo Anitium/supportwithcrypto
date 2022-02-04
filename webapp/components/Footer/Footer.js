@@ -2,6 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 import { Logo } from '../Logo';
+import { TwitterIcon, WalletIcon } from '../icons';
 
 const Footer = () => {
   return (
@@ -13,11 +14,15 @@ const Footer = () => {
       </div>
       <div className="container mx-auto flex space items-center justify-between h-32 px-4 xl:px-24">
         <div className="flex space-x-4 justify-center items-center">
-          <label className="font-medium text-gray-100">Follow us in </label>
-          <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
-          <a><div className="rounded-full h-8 w-8 bg-blue-300"></div></a>
+          <label className="font-medium text-gray-100">find us in</label>
+          <a href="/" className="flex w-8 h-8 text-blue-300">
+            <WalletIcon />
+          </a>
+          <a href="https://twitter.com/supportwithc" target='_blank' className="flex w-8 h-8 text-blue-300">
+            <TwitterIcon />
+          </a>
         </div>
-        <div className="flex">
+        <div className="flex text-gray-200">
           <Link href='/terms-conditions' className='text-gray-200'>Terms & Conditions</Link>
         </div>
       </div>
