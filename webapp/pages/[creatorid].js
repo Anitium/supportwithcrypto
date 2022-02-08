@@ -236,7 +236,6 @@ const User = ({}) => {
 			      </form>
           </div>
           { creator && creator.about && <CreatorAbout creator={creator} /> }
-          <CreatorEmbedCode />
         </div>
       </div>
     </section>
