@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useEthers, useEtherBalance } from "@usedapp/core";
-import { ethers } from 'ethers';
-import Web3Modal from "web3modal";
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
 import { WalletIcon, LogoutIcon } from '../icons';
@@ -11,7 +9,7 @@ import { useSymbol } from '../../hooks/useSymbol';
 import { formatCurrency, formatAccount } from '../../utils/cryptoutils/';
 import { Logo } from '../Logo';
 
-import { signMessage, getAuthKey } from '../../utils/auth';
+import { signMessage, getAuthKey, connectToWallet } from '../../utils/auth';
 import { getItem, removeItem, setItem } from '../../utils/storage';
 import { globals } from '../../utils/constants';
 
@@ -51,30 +49,7 @@ const ConnectButton = ({label}) => {
 
   // functions
   const handleConnect = async () => {
-    try {
-      const providerOptions = {
-        walletconnect: {
-          package: WalletConnectProvider,
-          options: {
-            // test key - don't copy as your mileage may vary
-            infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
-          }
-        },
-      }; 
-      // web3Modal support multiple providers/wallets
-      const web3Modal = new Web3Modal({
-        cacheProvider: false, // optional
-        providerOptions, // required        
-      });
-      const connection = await web3Modal.connect();
-      // Get providers
-      const provider = new ethers.providers.Web3Provider(connection);
-      console.log('provider:', provider);
-      // reload the window
-      window.location.reload();
-    } catch(err) {
-      console.log('connection error:', err);
-    }    
+    connectToWallet(WalletConnectProvider, globals.infuraId);
   };
   
   const handleDisconnect = (e) => {

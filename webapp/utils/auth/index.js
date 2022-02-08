@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import Web3Modal from "web3modal";
 
 export const signMessage = async ({ message, connection }) => {
   try {
@@ -57,4 +58,31 @@ export const verifyAuthHttpReq = async req => {
     });
   }
   return isValid;
+};
+
+export const connectToWallet = async (WalletConnectProvider, infuraId) => {
+  try {
+    const providerOptions = {
+      walletconnect: {
+        package: WalletConnectProvider,
+        options: {
+          // test key - don't copy as your mileage may vary
+          infuraId: infuraId,
+        }
+      },
+    }; 
+    // web3Modal support multiple providers/wallets
+    const web3Modal = new Web3Modal({
+      cacheProvider: false, // optional
+      providerOptions, // required        
+    });
+    const connection = await web3Modal.connect();
+    // Get providers
+    const provider = new ethers.providers.Web3Provider(connection);
+    console.log('provider:', provider);
+    // reload the window
+    window.location.reload();
+  } catch(err) {
+    console.log('connection error:', err);
+  }    
 };
