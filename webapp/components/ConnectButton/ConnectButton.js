@@ -67,22 +67,24 @@ const ConnectButton = ({label}) => {
   return (
   <div className="w-full text-sm leading-4 font-medium text-green-900">
     { account ? (
-      <a type="button" href={'/' + account}>
+      
         <div className="flex item-center justify-center space-x-6">
-          <div className="flex items-center justify-center">
-            <span>{`${formatCurrency(etherBalance)} ${symbol}`} -</span>
-            <div className="flex w-4 h-4 text-blue-300 mx-1">
-              <WalletIcon />
+          <a type="button" href={'/' + account}>
+            <div className="flex items-center justify-center">
+              <span>{`${formatCurrency(etherBalance)} ${symbol}`} -</span>
+              <div className="flex w-4 h-4 text-blue-300 mx-1">
+                <WalletIcon />
+              </div>
+              <span>{`${formatAccount(account)}`}</span>
             </div>
-            <span>{`${formatAccount(account)}`}</span>
-          </div>
+          </a>
           <div className="flex">
             <a href="#" onClick={handleDisconnect} className="w-4 h-4 text-gray-500">
               <LogoutIcon />
             </a>
           </div>
         </div>
-      </a>
+      
     ) : (
       <button
         type="button" 
