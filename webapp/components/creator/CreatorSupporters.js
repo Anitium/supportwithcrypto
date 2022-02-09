@@ -36,7 +36,6 @@ const CreatorSupporters = ({creator}) => {
                   </div>
                   <div className='flex flex-row items-center space-x-2 justify-start'>
                     <div className="flex text-lg">{formatCurrency(tx.amount)}</div>
-                    <a><div className="rounded-full h-8 w-8 bg-swc-left"></div></a>
                   </div>
                 </div>
               </div>
