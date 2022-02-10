@@ -23,7 +23,8 @@ const useRate = (chainId) => {
       }
     }
     // fetch data
-    fetchExchangeRates(chainId)
+    // set deefault chainid to 1 (EHT Mainnet) to get some 'real rates'
+    fetchExchangeRates( chainId == undefined ? 1 : chainId )
   }, [chainId]);
   return [rate, rateDate];
 };
