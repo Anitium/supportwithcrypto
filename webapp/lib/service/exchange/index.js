@@ -22,7 +22,8 @@ export async function cryptoRate(symbol) {
         if(response && response.success){
           updated = true;
           rates = response.payload;
-          rates = await updateCryptoRate(rates);
+          response = await updateCryptoRate(rates);
+          rates = response.payload;
           getLogger().debug(`Rate updated`);
         }
       }
@@ -76,7 +77,7 @@ export async function updateCryptoRate(data) {
     // return result
     return {
       success: false,
-      payload: {},
+      payload: data,
       errorMessage: new Error(error).message,
     };
   }

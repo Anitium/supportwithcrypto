@@ -18,14 +18,46 @@ const User = ({}) => {
   const [, setError] = useState('');
   const [refresh, setRefresh] = useState(true);
   
+  // ethers management
+  const { account, chainId } = useEthers();
+  const etherBalance = useEtherBalance(account);
+
+  // transaction management
+  const { sendTransaction, state:transactionState } = useSendTransaction();
+
+  // hooks
+  // router
+  const router = useRouter();
+
   // form management
   const [dollar, setDollar] = useState(5);
   const [crypto, setCrypto] = useState(0);
   const [message, setMessage] = useState('');
+  const [rate, rateDate] = useRate(chainId);
+  const symbol = useSymbol(chainId);
+  const [tick, setTick] = useState(true);
+  const [inputSize, setInputSize] = useState(1);
   
-  // hooks
-  // router
-  const router = useRouter();
+
+  useEffect(() => {
+    setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
+  },[rate, dollar]);
+
+  const animateTick = () => {
+    setTick(true);
+    setTimeout(() => {setTick(false)}, 80);
+  }
+
+  const updateInputSize = () => {
+    setInputSize(dollar.toString().length > 7 ? 7 : (dollar.toString().length < 1?1:dollar.toString().length));
+    setTimeout(() => {setTick(false)}, 80);
+  }
+
+  useMemo(() => {
+    animateTick();
+    updateInputSize()
+  },[dollar]);
+
 
   // effect for onloading the page
   useEffect(() => {
@@ -46,13 +78,6 @@ const User = ({}) => {
       fetchData(creatorid);
     }
   }, [router.query, refresh]);
-
-  // ethers management
-  const { account, chainId } = useEthers();
-  const etherBalance = useEtherBalance(account);
-
-  // transaction management
-  const { sendTransaction, state:transactionState } = useSendTransaction();
 
   // input validation
   const enableBtn = useMemo(() => {
@@ -106,13 +131,6 @@ const User = ({}) => {
   	}
   }, [transactionState]);
 
-  const symbol = useSymbol(chainId);
-  const [rate, rateDate] = useRate(chainId);
-
-  useEffect(() => {
-    setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
-  },[rate, dollar]);
-
   // functions
   const handleDonation = async (e) => {
     // prevent bubble up the event
@@ -129,7 +147,6 @@ const User = ({}) => {
   	// send transaction
     sendTransaction({ 'from': account, 'to': creatorid, value });
   };
-
   // logs
   console.log('--- account, chainId, balance, crypto, enableBtn, transactionState', account, chainId, etherBalance, crypto, enableBtn, transactionState, creator);
   return (
@@ -160,55 +177,57 @@ const User = ({}) => {
             <h2 className="border-b border-gray-100 text-xl font-medium text-gray-700">Support <strong>{(creator && creator.name)? creator.name : 'the Creator'}</strong></h2>
 			      <form>
               <div className="flex flex-col space-y-6">
-				        <div className="flex flex-row w-full justify-between items-center space-x-6">
-                  <div className='flex'>
-                    <button 
-                      onClick={e => { e.preventDefault(); setDollar( !dollar ? 5 : parseFloat(dollar) - 5 <=0 ? 0 : parseFloat(dollar) - 5) }}
-                    >
-                  <div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">-</div></button>
-				      	  </div>
-				      	  <div className="flex relative rounded-md shadow-sm text-gray-500">
-				      			<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <span className='text-gray-400 text-4xl font-bold'>
-                        $
-				      			  </span>
-				      			</div>
-                    <input 
-                      type="text" 
-                      name="dollars" 
-                      id="dollars" 
-                      value={dollar} 
-                      onChange={e => setDollar(e.target.value)}
-                      placeholder='0'
-				      			  className={classNames('border border-swc-left h-20 focus:ring-swc-right block w-full pl-10 pr-4 rounded-3xl text-gray-500 text-5xl font-bold')}
-				      			/>
-				      		</div>
-                  <div className='flex'>
-                    <button 
-                      onClick={e => { e.preventDefault(); setDollar( !dollar ? 5: parseFloat(dollar) + 5) }}
-                    >
-                  <div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">+</div></button>
-				      	  </div>
+				        <div className="flex flex-col w-full justify-between items-center">
+                  <div className='flex border border-swc-left rounded-2xl flex-col' >
+                    <div className="flex items-center justify-center h-20 text-gray-500">
+                      <div className='flex w-1/4 items-center justify-center'>
+                        <button onClick={e => { e.preventDefault(); setDollar( !dollar ? 0 : (parseFloat(dollar) - 5 <=0 ? 0 : parseFloat(dollar) - 5)) }}>
+                          <div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">-</div>
+                        </button>
+				      	      </div>
+                      <div className="flex w-1/2 items-center justify-center">
+                        <div className="flex w-6 items-center justify-end">
+                          <span className='text-gray-400 text-4xl font-bold'>$</span>
+                        </div>
+                        <div className="flex">
+                          <input type="text" name="dollars" id="dollars" placeholder='0' 
+                            size={inputSize} 
+                            className='text-center  text-gray-500 text-5xl font-bold focus:outline-none'
+                            value={dollar} onChange={e => setDollar(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                      <div className='flex w-1/4 items-center justify-center'>
+                        <button onClick={e => { e.preventDefault(); setDollar( !dollar ? 5: parseFloat(dollar) + 5) }}>
+                          <div className="flex text-3xl text-blue-500 font-extrabold rounded-full h-12 w-12 border-2 border-swc-left justify-center items-center">+</div>
+                        </button>
+    				      	  </div>
+                    </div>
+                    <div className="flex items-center justify-center h-20 text-white gradient rounded-b-2xl">
+                      <div className="flex w-32 items-center justify-end">
+                        <span className="text-2xl font-bold ">
+                          {symbol}
+                        </span>
+                      </div>
+                      <div className={'flex pl-2 pr-2 ' + (tick?'animate-crypto-tick':'')}>
+                        <input disabled
+                          type="text"
+                          name="amount"
+                          id="amount"
+                          value={crypto.toFixed(8)}
+                          //onChange={e => (e.target.value.length > 0) ? setDollar(parseFloat(e.target.value) * rate) : setDollar(0)}
+                          placeholder='0'
+                          className='w-full pl-1 text-4xl font-bold focus:outline-none bg-transparent'
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col w-full">
+                    <div className='flex text-xs text-left text-gray-400 pt-2'>
+                      rate {rate} on {rateDate} 
+                    </div>
+                  </div>
 			          </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex relative w-full rounded-md shadow-sm">
-                    <span className="gradient inline-flex h-12 w-32 items-center justify-center rounded-l-md text-2xl font-bold text-gray-100">
-                      {symbol}
-                    </span>
-                    <input
-                      type="text"
-                      name="amount"
-                      id="amount"
-                      value={crypto}
-                      onChange={e => (e.target.value.length > 0) ? setDollar(parseFloat(e.target.value) * rate) : setDollar(0)}
-                      placeholder='0'
-                      className='border border-swc-left h-12 focus:ring-swc-right block w-full pl-4 pr-12 rounded-r-lg text-gray-500 text-2xl font-bold'
-                    />
-                  </div>
-                  <div className='flex text-xs text-left text-gray-400 pt-2'>
-                    rate {rate} on {rateDate} 
-                  </div>
-                </div>
 	              <div>
 	                <div className="mx-auto block relative mt-0 font-normal">
 				      	    <label className="top-0 left-0 absolute pt-2 px-3 text-left text-xs text-gray-600 font-normal">Your message to creator...</label>

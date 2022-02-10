@@ -9,6 +9,16 @@ module.exports = {
       padding: '12px',
     },
     extend: {
+      animation: {
+        'crypto-tick': 'tick 0.5s',
+      },
+      keyframes: {
+        tick: {
+          '0%':{ transform: 'scale(1)' },
+          '50%':{ transform: 'scale(1.15)' },
+          '100%':{ transform: 'scale(1)' },
+        },
+      },
       backgroundImage: {
         'rainbow' : "url('/assets/img/rainbow.png')",
       },
