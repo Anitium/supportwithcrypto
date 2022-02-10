@@ -54,12 +54,12 @@ const CreatorSupporters = ({creator}) => {
                 <div className='flex flex-row items-center justify-center space-x-4 '
                  >
                   <div> 
-                    <Link href={twitterurl}>
+                    <Link href={twitterurl} passHref>
                       <img className="w-16 p-1 lg:block " src="./assets/img/social/twitter-logo.png" alt="Share" />
                     </Link>
                   </div>
                   <div className=''> 
-                    <Link href={whatsappurl}>
+                    <Link href={whatsappurl} passHref>
                       <img className="w-16 p-1 lg:block " src="./assets/img/social/whatsapp-logo.png" alt="Share" />
                     </Link>
                   </div>

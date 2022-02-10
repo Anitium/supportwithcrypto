@@ -53,7 +53,7 @@ const User = ({}) => {
     setTimeout(() => {setTick(false)}, 80);
   }
 
-  useMemo(() => {
+  useEffect(() => {
     animateTick();
     updateInputSize()
   },[dollar]);
