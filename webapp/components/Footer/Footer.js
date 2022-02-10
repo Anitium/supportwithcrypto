@@ -14,7 +14,7 @@ const Footer = () => {
       </div>
       <div className="container mx-auto flex space items-center justify-between h-32 px-4 xl:px-24">
         <div className="flex space-x-4 justify-center items-center">
-          <label className="font-medium text-gray-100">find us in</label>
+          <label className="font-medium text-gray-100 hidden sm:block">find us in</label>
           <Link href="/" >
             <a className="flex w-8 h-8 text-blue-300">
               <WalletIcon />
@@ -26,12 +26,12 @@ const Footer = () => {
             </a>
           </Link>
         </div>
-        <div className="flex text-gray-200">
+        <div className="flex text-gray-200 text-sm sm:text-base">
           <Link href='/terms-conditions' className='text-gray-200'>Terms & Conditions</Link>
         </div>
       </div>
       <div className='text-xs text-gray-100'>
-        <a href="https://www.freepik.com/vectors/people">People vector created by vectorjuice - www.freepik.com</a>
+        <a className="flex" href="https://www.freepik.com/vectors/people"><span className="hidden sm:block">People vector created by</span><span> vectorjuice - www.freepik.com</span></a>
       </div>
     </footer>
   );

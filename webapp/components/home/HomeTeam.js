@@ -7,7 +7,7 @@ import TeamMember from './TeamMember';
 const HomeTeam = () => {
   return (
     <>
-      <div className='flex flex-col lg:flex-row  w-full items-center space-y-10 space-x-10 px-10 lg:px-0 lg:items-start lg:justify-start lg:space-y-0'>
+      <div className='flex flex-col lg:flex-row  w-full items-center space-y-10 space-x-0 lg:space-x-10 px-10 lg:px-0 lg:items-start lg:justify-start lg:space-y-0'>
         <div className='flex flex-col items-start justify-start align-top space-y-2 lg:w-1/3 '>
           <h1 className='flex text-4xl font-extrabold text-gray-600'>Our Team</h1>
           <p className='flex text-2xl text-gray-400'>Meet our team of digital warriors, ready to harness the Force for good.</p>
@@ -25,8 +25,8 @@ const HomeTeam = () => {
           </div>
         </div>
         <div className='flex lg:w-2/3'>
-          <div className='flex flex-col items-center space-y-10 md:flex-row md:space-x-16 md:space-y-0'>
-            <div className="flex w-2/3 md:w-1/2">
+          <div className='flex flex-col space-y-10 sm:flex-row sm:space-x-16 sm:space-y-0'>
+            <div className="flex md:w-1/2">
               <TeamMember name='Karel Becerra' title='Entrepreneur' avatar='/assets/img/team/karel.jpg'
                 summary='Crypto/Web3 Ξ · Find me coding or fishing at Caribean Sea 🐟  🏖  🇺🇸 🌴  · wagmi 🙏'
                 address=''
@@ -34,7 +34,7 @@ const HomeTeam = () => {
                 linkedin='https://www.linkedin.com/in/karelbecerra'
               />
             </div>
-            <div className="flex w-2/3 md:w-1/2">
+            <div className="flex md:w-1/2">
               <TeamMember name='Juan C Olamendy' title='Entrepreneur' avatar='/assets/img/team/juanc.jpg'
                 summary='Indie Hacker · Talking about SaaS 🚀 · Building AI/Web3 Ξ products 🛠️ in public · '
                 address=''
