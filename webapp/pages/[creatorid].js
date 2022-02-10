@@ -168,17 +168,17 @@ const User = ({}) => {
       {/* User Content About Tab */}
       <div className="w-full flex flex-col lg:flex-row max-w-6xl pt-3 lg:space-x-10 space-y-5 lg:space-y-0">
         {/* User Content About and Comments (Left Panel) */}
-        <div className="basis-7/12 flex flex-col pt-5 space-y-5 order-2 lg:order-first">
+        <div className="basis-1/2 xl:basis-7/12 flex flex-col pt-5 space-y-5 order-2 lg:order-first">
           <CreatorSupporters creator={creator} />
         </div>
         {/* User Content Donate Botton (Right Panel & Top) */}
-        <div className="basis-5/12 flex flex-col lg:pt-5 space-y-5 ">
+        <div className="basis-1/2 xl:basis-5/12 flex flex-col lg:pt-5 space-y-5 ">
           <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
             <h2 className="border-b border-gray-100 text-xl font-medium text-gray-700">Support <strong>{(creator && creator.name)? creator.name : 'the Creator'}</strong></h2>
 			      <form>
               <div className="flex flex-col space-y-6">
 				        <div className="flex flex-col w-full justify-between items-center">
-                  <div className='flex border border-swc-left rounded-2xl flex-col' >
+                  <div className='flex w-full border border-swc-left rounded-2xl flex-col' >
                     <div className="flex items-center justify-center h-20 text-gray-500">
                       <div className='flex w-1/4 items-center justify-center'>
                         <button onClick={e => { e.preventDefault(); setDollar( !dollar ? 0 : (parseFloat(dollar) - 5 <=0 ? 0 : parseFloat(dollar) - 5)) }}>
