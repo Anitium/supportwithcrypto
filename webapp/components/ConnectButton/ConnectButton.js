@@ -68,7 +68,6 @@ const ConnectButton = ({label}) => {
   return (
   <div className="w-full text-sm leading-4 font-medium text-green-900">
     { account ? (
-      
         <div className="flex item-center justify-center space-x-6">
           <a type="button" href={'/' + account}>
             <div className="flex items-center justify-center">
