@@ -63,7 +63,7 @@ const ConnectButton = ({label}) => {
   };
 
   // log
-  console.log('account:', account);
+  console.log('--- account:', account);
   // render out
   return (
   <div className="w-full text-sm leading-4 font-medium text-green-900">

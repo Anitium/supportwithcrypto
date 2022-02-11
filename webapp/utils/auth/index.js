@@ -87,9 +87,6 @@ export const connectToWallet = async (activate) => {
     const provider = await web3Modal.connect();
     console.log('--- provider:', provider);
     await activate(provider);
-    // reload the window
-    console.log('--- activated');
-    window.location.reload();
   } catch(err) {
     console.log('connection error:', err);
   }    
