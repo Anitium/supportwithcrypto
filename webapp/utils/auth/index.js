@@ -64,22 +64,31 @@ export const verifyAuthHttpReq = async req => {
 
 export const connectToWallet = async (activate) => {
   const providerOptions = {
+    injected: {
+      display: {
+        name: 'Metamask',
+        description: 'Connect with the provider in your Browser',
+      },
+      package: null,
+    },
     walletconnect: {
       package: WalletConnectProvider,
       options: {
         bridge: globals.infuraBridge,
         infuraId: globals.infuraId,
-      }
+      },
     },
   };
   // web3Modal support multiple providers/wallets
   const web3Modal = new Web3Modal({
-    providerOptions, // required
+    providerOptions,
   });  
   try {
     const provider = await web3Modal.connect();
+    console.log('--- provider:', provider);
     await activate(provider);
     // reload the window
+    console.log('--- activated');
     window.location.reload();
   } catch(err) {
     console.log('connection error:', err);

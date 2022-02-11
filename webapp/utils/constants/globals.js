@@ -4,7 +4,7 @@ const globals = {
 With SupportWithCrypto your audience can support you with cryptocurrency.`,
   
   infuraBridge: 'https://bridge.walletconnect.org',
-  infuraId: '8043bb2cf99347b1bfadfb233c5325c0',  
+  infuraId:     '14a0951f47e646c1b241aa533e150219',
 
 };
 

@@ -48,7 +48,7 @@ const ConnectButton = ({label}) => {
 
   // functions
   const handleConnect = async () => {
-    connectToWallet(activate);
+    connectToWallet(activate);    
   };
   
   const handleDisconnect = (e) => {
