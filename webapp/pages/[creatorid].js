@@ -147,8 +147,9 @@ const User = ({}) => {
   	// send transaction
     sendTransaction({ 'from': account, 'to': creatorid, value });
   };
+  
   // logs
-  console.log('--- account, chainId, balance, crypto, enableBtn, transactionState', account, chainId, etherBalance, crypto, enableBtn, transactionState, creator);
+  // console.log('--- account, chainId, balance, crypto, enableBtn, transactionState', account, chainId, etherBalance, crypto, enableBtn, transactionState, creator);  
   return (
   <content className="container mx-auto flex flex-col">
     {/* User Profile Header */}

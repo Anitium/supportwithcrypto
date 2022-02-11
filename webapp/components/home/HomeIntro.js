@@ -2,21 +2,19 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { useEthers } from "@usedapp/core";
-import WalletConnectProvider from '@walletconnect/web3-provider';
 
 import { connectToWallet } from '../../utils/auth';
-import { globals } from '../../utils/constants';
 
 const HomeIntro = () => {
   // hooks
-  const { account } = useEthers();
+  const { account, activate } = useEthers();
   const router = useRouter();
 
   // function
   const handleGetStarted = e => {
     e.preventDefault();
     if(!account) {
-      connectToWallet(WalletConnectProvider, globals.infuraId);
+      connectToWallet(activate);
     } else {
       router.push(`/${account}`);
     }

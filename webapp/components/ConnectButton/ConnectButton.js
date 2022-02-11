@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useEthers, useEtherBalance } from "@usedapp/core";
-import WalletConnectProvider from '@walletconnect/web3-provider';
 
 import { WalletIcon, LogoutIcon } from '../icons';
 import { useSymbol } from '../../hooks/useSymbol';
@@ -15,7 +14,7 @@ import { globals } from '../../utils/constants';
 
 const ConnectButton = ({label}) => {
   // hooks
-  const { deactivate, account, chainId, library: connection } = useEthers();
+  const { deactivate, account, activate, chainId, library: connection } = useEthers();
   const etherBalance = useEtherBalance(account);
 
   const symbol = useSymbol(chainId);
@@ -49,7 +48,7 @@ const ConnectButton = ({label}) => {
 
   // functions
   const handleConnect = async () => {
-    connectToWallet(WalletConnectProvider, globals.infuraId);
+    connectToWallet(activate);
   };
   
   const handleDisconnect = (e) => {
@@ -63,6 +62,8 @@ const ConnectButton = ({label}) => {
     deactivate();
   };
 
+  // log
+  console.log('account:', account);
   // render out
   return (
   <div className="w-full text-sm leading-4 font-medium text-green-900">
