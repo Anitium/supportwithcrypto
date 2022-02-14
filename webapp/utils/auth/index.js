@@ -1,6 +1,8 @@
 import Web3Modal from "web3modal";
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
+import { ethers } from 'ethers';
+
 import { globals } from '../constants';
 
 export const signMessage = async ({ message, connection }) => {
