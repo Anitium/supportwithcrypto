@@ -40,7 +40,7 @@ const User = ({}) => {
   
 
   useEffect(() => {
-    setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
+    setCrypto( !dollar ? 1: parseFloat(dollar)/rate );
   },[rate, dollar]);
 
   const animateTick = () => {
@@ -142,7 +142,7 @@ const User = ({}) => {
   	}
   	// init
   	const { creatorid } = router.query;
-  	const value = ethers.utils.parseUnits(crypto.toString(), 'ether');
+    const value = ethers.utils.parseUnits(crypto.toString(), 'ether');
 
   	// send transaction
     sendTransaction({ 'from': account, 'to': creatorid, value });

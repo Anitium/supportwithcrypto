@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import { useRouter } from 'next/router';
+
 import { useEthers, useEtherBalance } from "@usedapp/core";
 
 import { WalletIcon, LogoutIcon } from '../icons';
@@ -14,6 +16,8 @@ import { globals } from '../../utils/constants';
 
 const ConnectButton = ({label}) => {
   // hooks
+  const router = useRouter();
+
   const { deactivate, account, activate, chainId, library: connection } = useEthers();
   const etherBalance = useEtherBalance(account);
 
@@ -62,6 +66,11 @@ const ConnectButton = ({label}) => {
     deactivate();
   };
 
+  const handleRedirect = (e) => {
+    e.preventDefault();
+    router.push(`/${account}`);
+  };
+
   // log
   console.log('--- account:', account);
   // render out
@@ -69,7 +78,7 @@ const ConnectButton = ({label}) => {
   <div className="w-full text-sm leading-4 font-medium text-green-900">
     { account ? (
         <div className="flex item-center justify-center space-x-6">
-          <a type="button" href={'/' + account}>
+          <a href="#" onClick={handleRedirect}>
             <div className="flex items-center justify-center">
               <span>{`${formatCurrency(etherBalance)} ${symbol}`} -</span>
               <div className="flex w-4 h-4 text-blue-300 mx-1">
