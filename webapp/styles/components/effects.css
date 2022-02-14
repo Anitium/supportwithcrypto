@@ -2,6 +2,12 @@
     @apply  bg-gradient-to-r from-swc-left to-swc-right;
 }
 
+.text-gradient{
+  //background: #0345ff linear-gradient(135deg, rgb(3,69,255) 0%, rgb(142,34,167) 100%);
+  @apply  bg-gradient-to-br from-swc-right to-fuchsia-600;
+  @apply bg-clip-text text-transparent fill-transparent box-decoration-clone;
+}
+
 .gradient-via-transparent {
     @apply  bg-gradient-to-br from-swc-left via-fuchsia-600 to-swc-right;
 }
