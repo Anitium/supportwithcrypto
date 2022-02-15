@@ -13,13 +13,11 @@ const User = ({}) => {
     website: '',
     twitter: '',
   });
-  const [name, setName] = useState('');
 
-  const [, setError] = useState('');
-  const [refresh, setRefresh] = useState(true);
+  const [error ,setError] = useState('');
   
   // ethers management
-  const { account, chainId } = useEthers();
+  const { account } = useEthers();
 
   // hooks
   // router
@@ -33,28 +31,16 @@ const User = ({}) => {
 	      if(!response.payload.name) {
 	          //response.payload = {name: '', about: '', website: '', twitter: '',};
 	      }
-	      response.payload.creatorid = creatorid;
 	      setCreator(response.payload);
       } else {
       	setError(response.errorMessage);
       }
   	};
-    const { creatorid } = router.query;
-    if(creatorid) {
-      fetchData(creatorid);
+    if(account) {
+      fetchData(account);
+    } else {
+      router.push('/');
     }
-  }, [router.query]);
-
-  const name1 = useMemo(() => {
-    return creator.name;
-  }, [creator]);
-
-  // input validation
-  const enableBtn = useMemo(() => {
-    if(!account) {
-      return false;
-    }
-    return true;
   }, [account]);
 
   // functions
@@ -62,34 +48,16 @@ const User = ({}) => {
     // prevent bubble up the event
     e.preventDefault();
 
-  	// validation
-  	if(!enableBtn) {
-  		return;
-  	}
-  	// init
+  	// logic
     creator.updated = new Date();
-    console.log('created=' + creator.created)
-    const data = {...creator};
-
-    // register creator settings
-    //data.push({
-    //  'name': name,
-    //  'updated': updated,
-    //});
-    
-    const response = await updateCreator(data);
-    
+    const response = await updateCreator(creator);
     // handle response
     console.log(response);
     if(!response.success) {
       setError(response.errorMessage);
     }
-
-    // update state
-    setRefresh(!refresh);
-	  
   };
-  
+
   return (
   <content className="container mx-auto flex flex-col">
     {/* User Content Left and Right */}

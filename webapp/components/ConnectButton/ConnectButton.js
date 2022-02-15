@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 import { useEthers, useEtherBalance } from "@usedapp/core";
 
-import { WalletIcon, LogoutIcon } from '../icons';
+import { WalletIcon, LogoutIcon, SettingsIcon } from '../icons';
 import { useSymbol } from '../../hooks/useSymbol';
 import { formatCurrency, formatAccount } from '../../utils/cryptoutils/';
 import { Logo } from '../Logo';
@@ -71,6 +71,11 @@ const ConnectButton = ({label}) => {
     router.push(`/${account}`);
   };
 
+  const handleGoSettings = (e) => {
+    e.preventDefault();
+    router.push(`/settings`);
+  };
+  
   // log
   console.log('--- account:', account);
   // render out
@@ -87,7 +92,10 @@ const ConnectButton = ({label}) => {
               <span>{`${formatAccount(account)}`}</span>
             </div>
           </a>
-          <div className="flex">
+          <div className="flex flex-row space-x-2">
+            <a href="#" onClick={handleGoSettings} className="w-4 h-4 text-gray-500">
+              <SettingsIcon />
+            </a>
             <a href="#" onClick={handleDisconnect} className="w-4 h-4 text-gray-500">
               <LogoutIcon />
             </a>
