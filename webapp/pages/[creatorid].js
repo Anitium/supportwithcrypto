@@ -40,7 +40,7 @@ const User = ({}) => {
   
 
   useEffect(() => {
-    setCrypto( !dollar ? 1: parseFloat(dollar)/rate );
+    setCrypto( !dollar ? 0: parseFloat(dollar)/rate );
   },[rate, dollar]);
 
   const animateTick = () => {
