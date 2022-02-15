@@ -25,7 +25,7 @@ const HomeIntro = () => {
         <div className='w-full lg:w-7/12'>
           <div className="text-center lg:text-left">
             <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tight font-extrabold text-gray-900 ">
-              <span className="block xl:inline">Help creators receive</span>{' '}
+              <span className="block xl:inline">Start receiving your</span>{' '}
               <span className="block text-blue-500 xl:inline text-gradient ">crypto donations</span>
             </h1>
             <p className="mt-3 md:mt-5 text-base md:text-lg lg:text-xl text-gray-500 sm:max-w-xl mx-auto lg:mx-0">
