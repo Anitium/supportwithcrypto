@@ -20,9 +20,9 @@ const CreatorProfile = ({creator}) => {
         </div>
       </div>
     
-      <div className="flex justify-between max-w-6xl w-full">
-        <div className="flex relative space-y-4 space-x-4 justify-center items-center">
-          <div className="lg:-mt-8 ">
+      <div className="flex max-w-6xl w-full">
+        <div className="flex relative space-x-4 justify-end items-end">
+          <div className="flex md:-mt-8 ">
             <div className="flex w-16 md:w-24">
               <Blockies className="max-h-16 md:max-h-24 min-w-full border-4 border-gray-50 rounded-full" 
                 seed={router.query.creatorid == undefined? 'AABBCCDDEE':router.query.creatorid}   
@@ -31,8 +31,8 @@ const CreatorProfile = ({creator}) => {
                 color={colors.blue[500]} bgColor={colors.cyan[500]} />
             </div>
           </div>
-          <div className="flex flex-col">
-            { creator && creator.name && <div className="font-bold text-lg lg:text-2xl text-gray-600">{creator.name}</div> }
+          <div className="flex flex-col pb-1">
+            { creator && creator.name && <div className="font-bold text-lg lg:text-2xl text-gray-500">{creator.name}</div> }
             { router.query.hasOwnProperty('creatorid') && <div className=" bg-gray-200 rounded-md p-1 text-xs lg:text-sm text-center text-gray-700">{formatAccount(router.query.creatorid)}</div> }
           </div>
         </div>
