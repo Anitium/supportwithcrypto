@@ -39,12 +39,13 @@ export async function updateCreator(data) {
     // update the published status of the creator
     await db.collection('creator').update({ 'creatorid': data.creatorid }, {
       $set: {
-        'created':      data.address,
-        'updated':      data.updated,
-        'name':         data.name,
-        'avatar':       data.avatar,
-        'about':        data.about,
         'creatorid':    data.creatorid,
+        'created':      !data.created? new Date(): new Date(data.created),
+        'name':         data.name,
+        'about':        data.about,
+        'twitter':      data.twitter,
+        'website':      data.website,
+        'updated':      new Date(data.updated),
         'transactions': data.transactions,
       }
     }, { upsert:true });

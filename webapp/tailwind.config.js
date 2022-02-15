@@ -1,5 +1,4 @@
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   content: [
     "./pages/**/*.{js,jsx}",
     "./components/**/*.{js,jsx}",
@@ -30,5 +29,11 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    // ...
+    // adding strategy class keeps old forms but force explicit 'form-text, form-textarea, ...' on each component.
+    require('@tailwindcss/forms')({
+      strategy: 'class',
+    }),
+  ],
 }
