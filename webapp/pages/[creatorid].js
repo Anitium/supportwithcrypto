@@ -49,7 +49,7 @@ const User = ({}) => {
   }
 
   const updateInputSize = () => {
-    setInputSize(dollar.toString().length > 7 ? 7 : (dollar.toString().length < 1?1:dollar.toString().length));
+    setInputSize(dollar.toString().length > 9 ? 10 : (dollar.toString().length < 1? 1:dollar.toString().length));
   }
 
   useEffect(() => {
@@ -214,7 +214,7 @@ const User = ({}) => {
                           type="text"
                           name="amount"
                           id="amount"
-                          value={crypto.substr(0,12)}
+                          value={!crypto?crypto:crypto.substr(0,12)}
                           //onChange={e => (e.target.value.length > 0) ? setDollar(parseFloat(e.target.value) * rate) : setDollar(0)}
                           placeholder='0'
                           className='w-full pl-1 text-4xl font-bold focus:outline-none bg-transparent'
