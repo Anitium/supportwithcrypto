@@ -12,7 +12,7 @@ const HomeTeam = () => {
           <h1 className='flex text-4xl font-extrabold text-gray-600'>Our Team</h1>
           <p className='flex text-2xl text-gray-400'>Meet our team of digital warriors, ready to harness the Force for good.</p>
           <div className="flex flex-row space-x-3 pt-2 items-center">
-            <Link href=''>
+            <Link href='/'>
               <a  className="flex w-6 h-6 text-gray-400">
                 <WalletIcon />
               </a>
@@ -29,7 +29,7 @@ const HomeTeam = () => {
             <div className="flex md:w-1/2">
               <TeamMember name='Karel Becerra' title='Entrepreneur' avatar='/assets/img/team/karel.jpg'
                 summary='Crypto/Web3 Ξ · Find me coding or fishing at Caribean Sea 🐟  🏖  🇺🇸 🌴  · wagmi 🙏'
-                address=''
+                address='/'
                 twitter='http://twitter.com/karelbecerra'
                 linkedin='https://www.linkedin.com/in/karelbecerra'
               />
@@ -37,7 +37,7 @@ const HomeTeam = () => {
             <div className="flex md:w-1/2">
               <TeamMember name='Juan C Olamendy' title='Entrepreneur' avatar='/assets/img/team/juanc.jpg'
                 summary='Indie Hacker · Talking about SaaS 🚀 · Building AI/Web3 Ξ products 🛠️ in public · '
-                address=''
+                address='/'
                 twitter='http://twitter.com/juancolamendy'
                 linkedin='https://www.linkedin.com/in/juancolamendy'
               />
