@@ -87,7 +87,7 @@ export const connectToWallet = async (activate) => {
   });  
   try {
     const connection = await web3Modal.connect();
-    // await activate(connection);
+    await activate(connection);
     // Get providers
     const provider = new ethers.providers.Web3Provider(connection);
     console.log('provider:', provider);
