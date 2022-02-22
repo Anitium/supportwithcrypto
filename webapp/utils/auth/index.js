@@ -86,9 +86,13 @@ export const connectToWallet = async (activate) => {
     providerOptions,
   });  
   try {
-    const provider = await web3Modal.connect();
-    console.log('--- provider:', provider);
-    await activate(provider);
+    const connection = await web3Modal.connect();
+    // await activate(connection);
+    // Get providers
+    const provider = new ethers.providers.Web3Provider(connection);
+    console.log('provider:', provider);
+    // reload the window
+    window.location.reload();
   } catch(err) {
     console.log('connection error:', err);
   }    
