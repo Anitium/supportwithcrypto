@@ -1,5 +1,5 @@
 import { updateCreator } from '../../../lib/service/creatorsvc';
-import { verifyAuthHttpReq } from '../../../utils/auth';
+import { verifyAuthHttpReq } from '../../../utils/web3auth';
 
 export default async function handler(req, res) {
   // switch the methods

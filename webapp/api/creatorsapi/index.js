@@ -1,5 +1,4 @@
-import { getAuthKey } from '../../utils/auth';
-import { getItem } from '../../utils/storage';
+import { getAuthData } from '../../utils/web3auth';
 
 export const getCreator = async (id) => {
 	try {
@@ -19,9 +18,7 @@ export const getCreator = async (id) => {
 
 export const updateCreator = async (data) => {
 	try {
-    const key = getAuthKey('swc');
-    const item = getItem(key);
-    data.auth = item;
+    data.auth = getAuthData();
 
 		console.log('sending creator data:', data);
 		const response = await fetch('/api/creators', {

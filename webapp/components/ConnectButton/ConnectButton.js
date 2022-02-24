@@ -10,60 +10,32 @@ import { useSymbol } from '../../hooks/useSymbol';
 import { formatCurrency, formatAccount } from '../../utils/cryptoutils/';
 import { Logo } from '../Logo';
 
-import { signMessage, getAuthKey, connectToWallet } from '../../utils/auth';
-import { getItem, removeItem, setItem } from '../../utils/storage';
+import { doConnect, useRefreshConnection, doDisconnect } from '../../utils/web3auth';
 import { globals } from '../../utils/constants';
 
 const ConnectButton = ({label}) => {
   // hooks
   const router = useRouter();
 
-  const { deactivate, account, activate, chainId, library: connection } = useEthers();
+  const { deactivate, account, activate, chainId } = useEthers();
   const etherBalance = useEtherBalance(account);
 
   const symbol = useSymbol(chainId);
 
-  useEffect(() => {
-    const handleAcctChange = async () => {
-      if(!account){
-        return;
-      }
-
-      const key = getAuthKey('swc');
-      const item = getItem(key);
-      if(!item || (item.authData && item.authData.address!==account)) {
-        console.log('sign a new message - key:', key);
-        const sig = await signMessage({message: globals.signatureMessage, connection});
-        if(sig.success) {
-          console.log('saving authData- key:', key);
-          setItem(key, {
-            authData: {
-              'message': sig.message,
-              'address': sig.address,
-              'signature': sig.signature,
-            }
-          })
-        }
-      }      
-    };
-    console.log('--- account change event:', account);
-    handleAcctChange();
-  }, [account, connection]);
-
+  // onload - refresh the connection
+  useRefreshConnection( globals.getConfig({ activate, deactivate }) );
+  
   // functions
   const handleConnect = async () => {
-    connectToWallet(activate);    
+    // doConnect
+    doConnect( globals.getConfig({activate, deactivate}) );
   };
   
   const handleDisconnect = (e) => {
     e.preventDefault();
 
-    // remove stored auth info
-    const key = getAuthKey('swc');
-    removeItem(key);
-
-    // deactivate
-    deactivate();
+    // doDisconnect
+    doDisconnect( globals.getConfig({activate, deactivate}) );
   };
 
   const handleRedirect = (e) => {

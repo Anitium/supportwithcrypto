@@ -3,18 +3,20 @@ import { useRouter } from 'next/router';
 
 import { useEthers } from "@usedapp/core";
 
-import { connectToWallet } from '../../utils/auth';
+import { doConnect } from '../../utils/web3auth';
+import { globals } from '../../utils/constants';
 
 const HomeIntro = () => {
   // hooks
-  const { account, activate } = useEthers();
+  const { account, activate, deactivate } = useEthers();
   const router = useRouter();
 
   // function
   const handleGetStarted = e => {
     e.preventDefault();
     if(!account) {
-      connectToWallet(activate);
+      // doConnect
+      doConnect( globals.getConfig({activate, deactivate}) );
     } else {
       router.push(`/${account}`);
     }
