@@ -215,8 +215,7 @@ export const doConnect = async opts => {
 
 export const doDisconnect = async opts => {
   // delete the key
-  const key = getAuthKey('swc');
-  window.localStorage.removeItem(key);
+  window.localStorage.clear();
 
   // deactivate
   if(opts.deactivate && typeof opts.deactivate === 'function') {
