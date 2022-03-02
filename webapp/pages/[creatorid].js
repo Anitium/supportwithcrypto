@@ -94,7 +94,7 @@ const User = ({}) => {
 
   // handle transaction
   useEffect(() => {
-	  const handleRecordTransaction = async (id, transaction) => {
+	  const handleRecordTransaction = async (transaction) => {
 	  	// init
 	  	const ts = new Date().getTime();
 	  	const { creatorid } = router.query;
@@ -102,7 +102,7 @@ const User = ({}) => {
 
 	  	// register transaction
 	  	data.transactions.push({
-	  		'transactionid': id,
+	  		'transactionid': transaction.hash,
         'amount': transaction.value,
         'message': message,
         'created': ts,
@@ -126,7 +126,9 @@ const User = ({}) => {
 
   	console.log('--- transactionState:', transactionState);
   	if(transactionState.status == 'Success') {
-  		handleRecordTransaction(transactionState.receipt.blockHash, transactionState.transaction);
+      console.log('--- transaction:', transactionState.transaction);
+      console.log('--- receipt:', transactionState.receipt);
+  		handleRecordTransaction(transactionState.transaction);
   	}
   }, [transactionState]);
 

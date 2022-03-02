@@ -6,12 +6,14 @@ import Link from 'next/link';
 import Blockies from "react-blockies";
 import colors from 'tailwindcss/colors'
 
-import {formatCurrency} from '../../utils/cryptoutils';
-import { formatAccount } from '../../utils/cryptoutils';
+import { formatCurrency, formatAccount, findChainById } from '../../utils/cryptoutils';
 
 const CreatorSupporters = ({creator}) => {
+  // hooks
   const router = useRouter();
-  const address = (router.query.creatorid == undefined? '':router.query.creatorid)
+
+  // calculations
+  const address = (router.query.creatorid == undefined? '':router.query.creatorid);
 
   const twitterurl = 'https://twitter.com/intent/tweet?text=You can support my work here => https://supportwithcrypto.com/' + address
   const whatsappurl = 'https://wa.me/?text=Hi, you can now support my work here => https://supportwithcrypto.com/' + address
@@ -35,7 +37,7 @@ const CreatorSupporters = ({creator}) => {
                     </div>
                   </div>
                   <div className='flex flex-row items-center space-x-2 justify-start'>
-                    <div className="flex text-lg">{formatCurrency(tx.amount)}</div>
+                    <div className="flex text-lg">{formatCurrency(tx.amount)} {(tx.chain != undefined) ? findChainById(tx.chain).symbol : 'ETH'}</div>
                   </div>
                 </div>
               </div>
