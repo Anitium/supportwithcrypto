@@ -15,14 +15,14 @@ const HeadTag = () => {
         <meta name="twitter:site"       content="@SupportWCrypto" />
         <meta name="twitter:creator"    content="@SupportWCrypto" />
         <meta name="twitter:title"      content="Support With Crypto" />
-        <meta name="twitter:image"      content="/assets/img/supportwithcrypto.jpg" />
+        <meta name="twitter:image"      content="https://supportwithcrypto.com/assets/img/supportwithcrypto.jpg" />
         
         {/* Facebook */}
         <meta property="og:url"         content="https://www.supportwithcrypto.com" />
         <meta property="og:type"        content="website" />
         <meta property="og:title"       content="Support With Crypto" />
         <meta property="og:description" content="Support With Crypto - Start receiving your crypto donations. Help creators to meet their goals! It feels better helping others, helping together." />
-        <meta property="og:image"       content="/assets/img/supportwithcrypto.jpg" />
+        <meta property="og:image"       content="https://supportwithcrypto.com/assets/img/supportwithcrypto.jpg" />
       </Head>
     </>
   )
