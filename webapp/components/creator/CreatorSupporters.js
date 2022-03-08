@@ -24,8 +24,8 @@ const CreatorSupporters = ({creator}) => {
         <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Suporters</h2>
         <div className="flex flex-col space-y-6">
         	{creator && creator.transactions && creator.transactions.map(tx =>(
-	          <div key={tx.transactionid} className="flex items-center space-x-3 p-4 rounded-md gradient-clear text-gray-700">
-              <div className='flex w-1/3'>
+	          <div key={tx.transactionid} className="flex flex-col sm:flex-row items-start space-y-2 sm:space-y-0 sm:space-x-3 p-4 rounded-md gradient-clear text-gray-700">
+              <div className='flex w-full sm:w-1/3'>
                 <div className='flex flex-col space-y-2'>
                   <div className='flex flex-row justify-center space-x-3 items-stretch'>
                     <div className="flex w-8 md:w-8">
@@ -41,7 +41,7 @@ const CreatorSupporters = ({creator}) => {
                   </div>
                 </div>
               </div>
-              <div className='flex w-2/3 border bg-white/40 rounded-md h-full text-center items-center p-2 '>
+              <div className='flex w-full sm:w-2/3 border bg-white/40 rounded-md h-full text-center items-center p-2 '>
                 <p>{tx.message}</p>
               </div>
 	          </div>              		
