@@ -32,3 +32,12 @@ export function getChainId(network) {
   }
   return match.chainId;
 };
+
+export function getChainScanner(chainId) {
+  const c = Object.values(chains);
+  const match = filterMatches(c, x => x.chainId === chainId, undefined);
+  if (!match) {
+    throw new Error(`No scanner found match ${chainId}`);
+  }
+  return match.explorers[0];
+};
