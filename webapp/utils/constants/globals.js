@@ -1,3 +1,5 @@
+import { getChainRPCs } from "../web3utils";
+
 const globals = {
 
   // get configuraiton
@@ -7,7 +9,8 @@ const globals = {
 With SupportWithCrypto your audience can support you with cryptocurrency.`,
     activate: activate,
     deactivate: deactivate,
-    chainId: chainId
+    chainId: chainId,
+    rpc: getChainRPCs(),
   }),
 
 };
