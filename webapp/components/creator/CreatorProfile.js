@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 
-import { formatAccount } from '../../utils/cryptoutils';
+import { formatAccount } from '../../utils/web3utils';
 import Blockies from "react-blockies";
 import colors from 'tailwindcss/colors'
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { findChainById } from '../../utils/cryptoutils';
+import { findChainById } from '../../utils/web3utils';
 import { getRate } from '../../api/exchangeapi'
 
 const useRate = (chainId) => {
@@ -11,7 +11,7 @@ const useRate = (chainId) => {
     async function fetchExchangeRates(chainId) {
       try{
         if( findChainById(chainId) != undefined ) {
-          const response = await getRate(findChainById(chainId).symbol);
+          const response = await getRate(findChainById(chainId).exchange.symbol);
           setRate(response.payload.rate);
           setRateDate(response.payload.rateDate);
         } else{

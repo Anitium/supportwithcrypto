@@ -8,7 +8,7 @@ import { globals } from '../../utils/constants';
 
 const HomeIntro = () => {
   // hooks
-  const { account, activate, deactivate } = useEthers();
+  const { account, activate, deactivate, chainId } = useEthers();
   const router = useRouter();
 
   // function
@@ -16,7 +16,7 @@ const HomeIntro = () => {
     e.preventDefault();
     if(!account) {
       // doConnect
-      doConnect( globals.getConfig({activate, deactivate}) );
+      doConnect( globals.getConfig({activate, deactivate, chainId}) );
     } else {
       router.push(`/${account}`);
     }

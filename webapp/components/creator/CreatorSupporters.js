@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Blockies from "react-blockies";
 import colors from 'tailwindcss/colors'
 
-import { formatCurrency, formatAccount, findChainById } from '../../utils/cryptoutils';
+import { formatCurrency, formatAccount, findChainById } from '../../utils/web3utils';
 
 const CreatorSupporters = ({creator}) => {
   // hooks
@@ -37,7 +37,7 @@ const CreatorSupporters = ({creator}) => {
                     </div>
                   </div>
                   <div className='flex flex-row items-center space-x-2 justify-start'>
-                    <div className="flex text-lg">{formatCurrency(tx.amount)} {(tx.chain != undefined) ? findChainById(tx.chain).symbol : 'ETH'}</div>
+                    <div className="flex text-lg">{formatCurrency(tx.amount)} {(tx.chain != undefined) ? findChainById(tx.chain).nativeCurrency.symbol : 'ETH'}</div>
                   </div>
                 </div>
               </div>

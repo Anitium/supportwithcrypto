@@ -7,7 +7,7 @@ import { useEthers, useEtherBalance } from "@usedapp/core";
 
 import { WalletIcon, LogoutIcon, SettingsIcon } from '../icons';
 import { useSymbol } from '../../hooks/useSymbol';
-import { formatCurrency, formatAccount } from '../../utils/cryptoutils/';
+import { formatCurrency, formatAccount } from '../../utils/web3utils/';
 import { Logo } from '../Logo';
 
 import { doConnect, useRefreshConnection, doDisconnect } from '../../utils/web3auth';
@@ -23,19 +23,19 @@ const ConnectButton = ({label}) => {
   const symbol = useSymbol(chainId);
 
   // onload - refresh the connection
-  useRefreshConnection( globals.getConfig({ activate, deactivate }) );
+  useRefreshConnection( globals.getConfig({ activate, deactivate, chainId }) );
   
   // functions
   const handleConnect = async () => {
     // doConnect
-    doConnect( globals.getConfig({activate, deactivate}) );
+    doConnect( globals.getConfig({activate, deactivate, chainId}) );
   };
   
   const handleDisconnect = (e) => {
     e.preventDefault();
 
     // doDisconnect
-    doDisconnect( globals.getConfig({activate, deactivate}) );
+    doDisconnect( globals.getConfig({activate, deactivate, chainId}) );
   };
 
   const handleRedirect = (e) => {
