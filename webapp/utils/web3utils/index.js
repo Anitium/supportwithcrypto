@@ -49,7 +49,7 @@ export function getChainRPCs(chainId, infuraId) {
     4: 'https://rinkeby.infura.io/v3/' + infuraId,
     5: 'https://goerli.infura.io/v3/' + infuraId,
     42: 'https://kovan.infura.io/v3/' + infuraId,
-    137: 'https://polygon-mainnet.infura.io/v3/' + infuraId,
-    80001: 'https://rpc-mumbai.matic.today',
+    137: 'https://polygon-rpc.com/',
+    80001: 'https://rpc-mumbai.maticvigil.com',
   }
 };
