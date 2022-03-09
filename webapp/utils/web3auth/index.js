@@ -3,8 +3,6 @@ import { useEffect } from 'react';
 import { ethers } from "ethers";
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
-import { getChainRPC } from '../web3utils';
-
 export const connectToInjected = async () => {
   let provider = null;
   if (typeof window.ethereum !== 'undefined') {
@@ -36,7 +34,6 @@ export const connectToWalletConnect = async opts => {
       qrcode = typeof opts.qrcode !== "undefined" ? opts.qrcode : qrcode;
       infuraId = opts.infuraId || "";
       rpc = opts.rpc; 
-      //rpc = getChainRPC(opts.chainId, opts.infuraId);
       chainId = opts.chainId ? opts.chainId : 1;
       qrcodeModalOptions = opts.qrcodeModalOptions || undefined;
     }
