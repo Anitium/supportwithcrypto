@@ -44,26 +44,12 @@ export function getChainScanner(chainId) {
 
 export function getChainRPCs(chainId, infuraId) {
   return {
-    1: 'https://mainnet.infura.io/v3/b81e3dcbe77441e8a80b56961e5b7dd9',
-    3: 'https://ropsten.infura.io/v3/b81e3dcbe77441e8a80b56961e5b7dd9',
-    4: 'https://rinkeby.infura.io/v3/b81e3dcbe77441e8a80b56961e5b7dd9',
-    5: 'https://goerli.infura.io/v3/b81e3dcbe77441e8a80b56961e5b7dd9',
-    42: 'https://kovan.infura.io/v3/b81e3dcbe77441e8a80b56961e5b7dd9',
-    137: 'https://polygon-mainnet.infura.io/v3/b81e3dcbe77441e8a80b56961e5b7dd9',
+    1: 'https://mainnet.infura.io/v3/' + infuraId,
+    3: 'https://ropsten.infura.io/v3/' + infuraId,
+    4: 'https://rinkeby.infura.io/v3/' + infuraId,
+    5: 'https://goerli.infura.io/v3/' + infuraId,
+    42: 'https://kovan.infura.io/v3/' + infuraId,
+    137: 'https://polygon-mainnet.infura.io/v3/' + infuraId,
     80001: 'https://rpc-mumbai.matic.today',
   }
-  /*
-  const c = Object.values(chains);
-  // ignore chainId 
-  if( chainId == undefined ) return undefined
-
-  const match = filterMatches(c, x => x.chainId === chainId, undefined);
-  if (!match) {
-    throw new Error(`No rpc found match ${chainId}`);
-  }
-  let result = {};
-  result[chainId] = match.rpc[0].replace('${INFURA_API_KEY}', infuraId)
-  console.log('getChainRPC - ' + JSON.stringify(result))
-  return result;
-  */
 };
