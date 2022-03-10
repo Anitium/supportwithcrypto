@@ -42,7 +42,7 @@ export function getChainScanner(chainId) {
   return match.explorers[0];
 };
 
-export function getChainRPCs(chainId, infuraId) {
+export function getChainRPCs(infuraId) {
   return {
     1: 'https://mainnet.infura.io/v3/' + infuraId,
     3: 'https://ropsten.infura.io/v3/' + infuraId,
