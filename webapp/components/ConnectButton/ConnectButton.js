@@ -5,13 +5,14 @@ import { useRouter } from 'next/router';
 
 import { useEthers, useEtherBalance } from "@usedapp/core";
 
-import { WalletIcon, LogoutIcon, SettingsIcon } from '../icons';
+import { WalletIcon, LogoutIcon, SettingsIcon, BlogIcon } from '../icons';
 import { useSymbol } from '../../hooks/useSymbol';
 import { formatCurrency, formatAccount } from '../../utils/web3utils/';
 import { Logo } from '../Logo';
 
 import { doConnect, useRefreshConnection, doDisconnect } from '../../utils/web3auth';
 import { globals } from '../../utils/constants';
+import Link from 'next/link';
 
 const ConnectButton = ({label}) => {
   // hooks
@@ -52,7 +53,14 @@ const ConnectButton = ({label}) => {
   console.log('--- account:', account);
   // render out
   return (
-  <div className="w-full text-sm leading-4 font-medium text-green-900">
+  <div className="flex w-full space-x-4 text-sm leading-4 font-medium text-green-900">
+    <div className="flex items-center">
+      <Link href='/blog' >
+        <a className="flex w-4 h-4 text-gray-500">
+          <BlogIcon />
+        </a>
+      </Link>
+    </div>
     { account ? (
         <div className="flex item-center justify-center space-x-6">
           <a href="#" onClick={handleRedirect}>

@@ -5,7 +5,7 @@ import { useEthers } from "@usedapp/core";
 import { DefaultLayout } from "../../layout";
 import { getCreator, updateCreator } from '../../api/creatorsapi';
 
-const User = ({}) => {
+const Settings = ({}) => {
   // state
   const [creator, setCreator] = useState({
   	name: '',
@@ -165,6 +165,6 @@ const User = ({}) => {
   );
 }
   
-User.Layout = DefaultLayout;
+Settings.Layout = DefaultLayout;
 
-export default User;  
+export default Settings;  
