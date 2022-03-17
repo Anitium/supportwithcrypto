@@ -13,14 +13,14 @@ const Blog = ({}) => {
         <div className='flex w-full md:w-2/3 flex-col space-y-8'>
           { 
             posts.map((post) => (
-                <PostSummary image={post.image} title={post.title} summary={post.summary}/>
+                <PostSummary key={post.id} image={post.image} title={post.title} summary={post.summary}/>
             ))
           }
         </div>
         <div className='md:flex hidden md:w-1/3 flex-col bg-white/80 rounded-lg'>
           { 
             posts.map((post) => (
-                <PostLi title={post.title} summary={post.summary}/>
+                <PostLi key={post.id} title={post.title} summary={post.summary}/>
             ))
           }
         </div>
