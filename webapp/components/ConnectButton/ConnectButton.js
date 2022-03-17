@@ -55,7 +55,7 @@ const ConnectButton = ({label}) => {
   return (
   <div className="flex w-full space-x-4 text-sm leading-4 font-medium text-green-900">
     <div className="flex items-center">
-      <Link href='/crypto' >
+      <Link href='/blog' >
         <a className="flex w-4 h-4 text-gray-500">
           <BlogIcon />
         </a>
