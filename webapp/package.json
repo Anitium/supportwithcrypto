@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "export BLOG_URL=http://localhost && next build",
     "start": "next start",
     "lint": "next lint"
   },

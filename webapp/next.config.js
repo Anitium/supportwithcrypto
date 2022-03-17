@@ -1,4 +1,4 @@
-const { BLOG_URL } = process.env
+const { BLOG_URL } = process.env;
 
 module.exports = {
   reactStrictMode: true,
