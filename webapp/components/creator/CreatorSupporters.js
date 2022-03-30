@@ -22,7 +22,7 @@ const CreatorSupporters = ({creator}) => {
   return (
     <>        
       <div className="flex flex-col space-y-10 shadow-sm rounded-md p-6 bg-white">
-        <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Suporters</h2>
+        <h2 className="border-b border-gray-100 text-xl font-medium text-gray-800">Supporters</h2>
         <div className="flex flex-col space-y-6">
         	{creator && creator.transactions && creator.transactions.map(tx =>(
 	          <div key={tx.transactionid} className="flex flex-col sm:flex-row items-start space-y-2 sm:space-y-0 sm:space-x-3 p-4 rounded-md gradient-clear text-gray-700">
@@ -64,12 +64,12 @@ const CreatorSupporters = ({creator}) => {
                 <div className='flex flex-row items-center justify-center space-x-4 '
                  >
                   <div> 
-                    <Link href={twitterurl} passHref>
+                    <Link target='_blank' href={twitterurl} passHref>
                       <img className="w-16 p-1 lg:block " src="./assets/img/social/twitter-logo.png" alt="Share" />
                     </Link>
                   </div>
                   <div className=''> 
-                    <Link href={whatsappurl} passHref>
+                    <Link target='_blank' href={whatsappurl} passHref>
                       <img className="w-16 p-1 lg:block " src="./assets/img/social/whatsapp-logo.png" alt="Share" />
                     </Link>
                   </div>

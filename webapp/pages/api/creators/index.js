@@ -14,6 +14,9 @@ export default async function handler(req, res) {
       }
 
       // execute action
+      // the creator is always the signer
+      data.creatorid = data.auth.authData.signer;
+      // save data
       const result = await updateCreator(data);
       return res.json(result);
     }

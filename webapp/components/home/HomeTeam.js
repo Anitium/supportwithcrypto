@@ -29,7 +29,7 @@ const HomeTeam = () => {
             <div className="flex md:w-1/2">
               <TeamMember name='Karel Becerra' title='Entrepreneur' avatar='/assets/img/team/karel.jpg'
                 summary='Crypto/Web3 Ξ · Find me coding or fishing at Caribean Sea 🐟  🏖  🇺🇸 🌴  · wagmi 🙏'
-                address='/'
+                address='https://www.supportwithcrypto.com/0xdbF335F4AaF2E04439975C7b7F3bF32343A5d5fe'
                 twitter='http://twitter.com/karelbecerra'
                 linkedin='https://www.linkedin.com/in/karelbecerra'
               />
@@ -37,7 +37,7 @@ const HomeTeam = () => {
             <div className="flex md:w-1/2">
               <TeamMember name='Juan C Olamendy' title='Entrepreneur' avatar='/assets/img/team/juanc.jpg'
                 summary='Indie Hacker · Talking about SaaS 🚀 · Building AI/Web3 Ξ products 🛠️ in public · '
-                address='/'
+                address='https://www.supportwithcrypto.com/0xd91b8f46ed2cfAd0f379392145F8d6420153852e'
                 twitter='http://twitter.com/juancolamendy'
                 linkedin='https://www.linkedin.com/in/juancolamendy'
               />

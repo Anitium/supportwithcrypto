@@ -18,12 +18,12 @@ const TeamMember = ({name, avatar, title, summary, address, twitter, linkedin}) 
           </a>
         </Link>
         <Link href={twitter}>
-          <a target='_blank' className="flex w-6 h-6 text-gray-400">
+          <a target="_blank" className="flex w-6 h-6 text-gray-400">
             <TwitterIcon />
           </a>
         </Link>
         <Link href={linkedin}>
-          <a target='_blank' className="flex w-6 h-6 text-gray-400">
+          <a target="_blank" className="flex w-6 h-6 text-gray-400">
             <LinkedInIcon />
           </a>
         </Link>
