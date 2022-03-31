@@ -1,3 +1,4 @@
+import { red } from 'tailwindcss/colors';
 import { updateCreator } from '../../../lib/service/creatorsvc';
 import { verifyAuthHttpReq } from '../../../utils/web3auth';
 
@@ -7,8 +8,9 @@ export default async function handler(req, res) {
     case 'POST': {
       const data = req.body;
 
-      const isValid = await verifyAuthHttpReq(req);
-      if(!isValid) {
+      const isValidAuth = await verifyAuthHttpReq(req);
+      const isValidCreatorId = verifyCreatorId(data)
+      if(!isValidAuth || !isValidCreatorId) {
         res.status(403).json({message: 'HTTP 403 Forbidden'});
         return;
       }
@@ -21,3 +23,7 @@ export default async function handler(req, res) {
 
   }
 };
+
+const verifyCreatorId = data => {
+  return data.creatorid == data.auth.authData.signer
+}
