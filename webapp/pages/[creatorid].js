@@ -6,7 +6,7 @@ import { useEthers, useEtherBalance, useSendTransaction } from "@usedapp/core";
 import classNames from '../utils/classutils';
 import { useSymbol, useRate } from '../hooks';
 import { DefaultLayout } from "../layout";
-import { getCreator, updateCreator } from '../api/creatorsapi';
+import { getCreator, addTransaction } from '../api/creatorsapi';
 import { CreatorProfile, CreatorSupporters, CreatorAbout, CreatorEmbedCode} from '../components/creator';
 import { Spinner } from '../components/Spinner';
 
@@ -63,10 +63,6 @@ const User = ({}) => {
     const fetchData = async (creatorid) => {
       const response = await getCreator(creatorid);
       if(response.success) {
-	      if(!response.payload.transactions) {
-	          response.payload.transactions = [];
-	      }
-	      response.payload.creatorid = creatorid;
 	      setCreator(response.payload);
       } else {
       	setError(response.errorMessage);
@@ -110,7 +106,7 @@ const User = ({}) => {
         'to': creatorid,
         'chain': chainId,
 	  	});
-	  	const response = await updateCreator(data);
+	  	const response = await addTransaction(data);
 	  	
 	  	// handle response
 	  	console.log(response);

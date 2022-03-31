@@ -11,7 +11,12 @@ export async function findCreatorById(creatorid) {
       // fetch the creator by address
       let data = await db.collection('creator').findOne({'creatorid': creatorid});
       if(!data) {
-        data = {};
+        data = {
+          creatorid,
+          transactions: [],
+          created: new Date(),
+          updated: new Date(),
+        };
       }
 
       // return result
@@ -39,14 +44,12 @@ export async function updateCreator(data) {
     // update the published status of the creator
     await db.collection('creator').update({ 'creatorid': data.creatorid }, {
       $set: {
-        'creatorid':    data.creatorid,
         'created':      !data.created? new Date(): new Date(data.created),
         'name':         data.name,
         'about':        data.about,
         'twitter':      data.twitter,
         'website':      data.website,
-        'updated':      new Date(data.updated),
-        'transactions': data.transactions,
+        'updated':      new Date(),
       }
     }, { upsert:true });
 
@@ -66,6 +69,36 @@ export async function updateCreator(data) {
     };
   }
 };
+
+export async function addTransaction(data) {
+  try {
+    // connect to the database
+    let { db } = await getDbConnection();
+
+    // update the published status of the creator
+    await db.collection('creator').update({ 'creatorid': data.creatorid }, {
+      $set: {
+        'updated':      new Date(),
+        'transactions': data.transactions,
+      }
+    }, { upsert:true });
+
+    // return a message
+    return {
+      success: true,
+      payload: data,
+    };
+  } catch (error) {
+    // log out error
+    getLogger().debug('updateCreator error:', error);
+    // return result
+    return {
+      success: false,
+      payload: {},
+      errorMessage: new Error(error).message,
+    };
+  }
+}
 
 export async function deleteCreator(creator) {
   try {

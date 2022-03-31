@@ -28,9 +28,6 @@ const Settings = ({}) => {
     const fetchData = async (creatorid) => {
       const response = await getCreator(creatorid);
       if(response.success) {
-	      if(!response.payload.name) {
-	          //response.payload = {name: '', about: '', website: '', twitter: '',};
-	      }
 	      setCreator(response.payload);
       } else {
       	setError(response.errorMessage);

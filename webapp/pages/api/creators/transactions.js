@@ -1,4 +1,4 @@
-import { updateCreator } from '../../../lib/service/creatorsvc';
+import { addTransaction } from '../../../lib/service/creatorsvc';
 import { verifyAuthHttpReq } from '../../../utils/web3auth';
 
 export default async function handler(req, res) {
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
       // execute action
       // save data
-      const result = await updateCreator(data);
+      const result = await addTransaction(data);
       return res.json(result);
     }
 

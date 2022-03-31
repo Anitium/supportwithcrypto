@@ -37,3 +37,25 @@ export const updateCreator = async (data) => {
 		};
 	}
 };
+
+export const addTransaction = async (data) => {
+	try {
+    data.auth = getAuthData();
+
+		console.log('sending transaction data:', data);
+    const response = await fetch('/api/creators/transactions', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},      
+			body: JSON.stringify(data),
+		});
+		return await response.json();
+	} catch(err) {
+		return {
+			payload: {},
+			success: false,
+			errorMessage: new Error(err).message,
+		};
+	}
+};
