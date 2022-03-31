@@ -1,4 +1,3 @@
-import { red } from 'tailwindcss/colors';
 import { updateCreator } from '../../../lib/service/creatorsvc';
 import { verifyAuthHttpReq } from '../../../utils/web3auth';
 
