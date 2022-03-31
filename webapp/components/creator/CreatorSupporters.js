@@ -54,7 +54,7 @@ const CreatorSupporters = ({creator}) => {
               </div>
 	          </div>              		
         	))}  
-          { (!creator || creator.transactions == 0) && 
+          { (!creator ||  !creator.transactions || creator.transactions == 0) && 
               <div className='flex flex-col space-x-4 spache-y-4 items-center justify-center'>
                 <div className='flex flex-col items-center text-gray-700 text-xs sm:text-base'>
                   <p>No supporters yet?</p>

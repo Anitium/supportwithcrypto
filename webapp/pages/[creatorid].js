@@ -97,7 +97,8 @@ const User = ({}) => {
 	  	const data = {...creator};
 
 	  	// register transaction
-	  	data.transactions.push({
+      // initialize transactions
+	  	(data.transactions = (data.transactions || [])).push({
 	  		'transactionid': transaction.hash,
         'amount': transaction.value,
         'message': message,
