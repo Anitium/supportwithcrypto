@@ -24,7 +24,7 @@ https://www.producthunt.com/@karelbecerra
 
 ## Visuals
 ### Thumbnail (240x240):
-### Images/Gallery (635x380):
+### Images/Gallery (1270x760):
 ### Video:
 
 ## First Comment:
