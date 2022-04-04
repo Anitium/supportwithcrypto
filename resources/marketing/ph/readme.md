@@ -23,7 +23,7 @@ https://www.producthunt.com/@juancolamendy
 https://www.producthunt.com/@karelbecerra
 
 ## Visuals
-### Thumbnail (240x240):
+### Thumbnail (600x600):
 ### Images/Gallery (1270x760):
 ### Video:
 
