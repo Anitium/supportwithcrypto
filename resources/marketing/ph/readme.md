@@ -25,7 +25,7 @@ https://www.producthunt.com/@karelbecerra
 ## Visuals
 ### Thumbnail (240x240):
 ### Images/Gallery (635x380):
-### Video:
+### Video: https://youtu.be/q147bw8cJC4
 
 ## First Comment:
 Hello Product Hunt! 😻👋
