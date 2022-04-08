@@ -27,7 +27,12 @@ https://www.producthunt.com/@karelbecerra
 ### Images/Gallery (635x380):
 ### Video: https://youtu.be/q147bw8cJC4
 
-## First Comment:
+## First Comments for Roberto:
+```
+```
+
+## Our Comments:
+```
 Hello Product Hunt! 😻👋
 
 I'm really excited to introduce 🎉 SupportWithCrypto to ProductHunt 😻!
@@ -41,11 +46,11 @@ So, why SupportWithCrypto? 🤔
 ✅ Make it easier for creators and supporters to join Web3
 
 How does it work?
-``` rewrite
-- Supporter connects their Wallet on Crypto Coffee
-- They enter their favorite creator’s wallet address and donate crypto
+///// change me
+- Supporter connects their Crypto Wallet
+- They pick their favorite creator’s wallet address and donate crypto
 - Creators can create their own crypto coffee page and share it with their audience too
-```
+///// change me
 
 📄 Product Url
 https://www.supportwithcrypto.com
@@ -54,4 +59,5 @@ https://www.supportwithcrypto.com
 I'll be around all day long to answer any questions!
 
 Cheers! 🍻
-Roberto
+Juan C Olamendy and Karel Becerra
+```
