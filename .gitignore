@@ -1,3 +1,6 @@
+#Local
+.DS_Store
+webapp/helm/charts/swc-webappi*
 .gitconfig
 
 # deployment
