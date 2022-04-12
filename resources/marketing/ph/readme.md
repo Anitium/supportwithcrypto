@@ -27,18 +27,25 @@ https://www.producthunt.com/@karelbecerra
 ### Images/Gallery (635x380):
 ### Video: https://youtu.be/q147bw8cJC4
 
-## First Comments for Roberto:
+## Roberto's Comments
 ```
+Total gamechanger!
+This is such a killer tool for creators to receive donations.
+Don't miss this exciting startup in the Crypto space.
+Super fast and easy — handy resource!
 ```
 
-## Our Comments:
+## Our Comments (JC/Karel):
 ```
 Hello Product Hunt! 😻👋
 
+Thank you so much, @roberto_robles, for hunting us! 🚀
+
+We're Juan Olamendy and Karel Becerra, founders of SupportWithCrypto.
 I'm really excited to introduce 🎉 SupportWithCrypto to ProductHunt 😻!
 
 So, why SupportWithCrypto? 🤔
-🛠 SupportWithCrypto helps you to get supported by your audience with crypto. 🙌
+🛠 SupportWithCrypt helps you to get supported by your audience with crypto.🙌
 
 👉 Benefits
 ✅ Move on from traditional currency to cryptocurrencies
@@ -46,18 +53,20 @@ So, why SupportWithCrypto? 🤔
 ✅ Make it easier for creators and supporters to join Web3
 
 How does it work?
-///// change me
-- Supporter connects their Crypto Wallet
-- They pick their favorite creator’s wallet address and donate crypto
-- Creators can create their own crypto coffee page and share it with their audience too
-///// change me
+- Build your micro-page from your Crypto Wallet
+- Share it with your Audience
+- Start receiving donations
 
 📄 Product Url
 https://www.supportwithcrypto.com
 
 🥅 Next
-I'll be around all day long to answer any questions!
+We'll be around all day long to answer any questions!
+
+⌚ Open Source Code:
+https://github.com/Anitium/supportwithcrypto
 
 Cheers! 🍻
 Juan C Olamendy and Karel Becerra
 ```
+
