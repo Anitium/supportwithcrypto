@@ -45,7 +45,7 @@ const HomeIntro = () => {
             </div>
             {/*product hunt badge*/}
             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-              <a href="https://www.producthunt.com/posts/support-with-crypto?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-support&#0045;with&#0045;crypto" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=342319&theme=light" alt="Support&#0032;with&#0032;Crypto - Bringing&#0032;crypto&#0032;donations&#0032;to&#0032;creators&#0032;worldwide | Product Hunt" style={{'width': '250px', 'height': '54px'}} width="250" height="54" /></a>
+              <a href="https://www.producthunt.com/posts/support-with-crypto?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-support&#0045;with&#0045;crypto" target="_blank" rel="noreferrer"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=342319&theme=light" alt="Support&#0032;with&#0032;Crypto - Bringing&#0032;crypto&#0032;donations&#0032;to&#0032;creators&#0032;worldwide | Product Hunt" style={{'width': '250px', 'height': '54px'}} width="250" height="54" /></a>
             </div>
             {/*product hunt badge*/}
           </div>
